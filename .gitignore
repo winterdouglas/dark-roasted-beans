@@ -78,3 +78,7 @@ yarn-error.log
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
+
+# Env files
+.env*
+!.env.example
