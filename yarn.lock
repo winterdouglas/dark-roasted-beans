@@ -2503,7 +2503,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.0.24":
+"@types/react@npm:*":
   version: 18.0.28
   resolution: "@types/react@npm:18.0.28"
   dependencies:
@@ -3864,7 +3864,6 @@ __metadata:
     "@react-navigation/native-stack": ^6.9.12
     "@tsconfig/react-native": ^2.0.3
     "@types/jest": ^29.2.1
-    "@types/react": ^18.0.24
     "@types/react-test-renderer": ^18.0.0
     babel-jest: ^29.2.1
     babel-plugin-module-resolver: ^5.0.0
