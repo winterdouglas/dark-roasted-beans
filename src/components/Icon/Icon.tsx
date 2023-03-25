@@ -4,13 +4,14 @@ import {
   PressableOpacity,
   PressableOpacityProps,
 } from "components/PressableOpacity";
-import { iconRegistry, Icons } from "assets/icons/iconsRegistry";
+import { iconRegistry, Icons } from "./iconsRegistry";
 
 export type IconProps = {
   /**
    * The icon to display
    */
   icon: Icons;
+
   /**
    * An optional color for the icon
    */
@@ -59,7 +60,7 @@ export const Icon = (props: IconProps) => {
       {...WrapperProps}>
       <IconComponent
         style={$imageStyleOverride}
-        color={color}
+        fill={color}
         width={size}
         height={size}
       />

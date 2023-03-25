@@ -1,4 +1,4 @@
-import ChevronLeft from "./chevron-left.svg";
+import { ChevronLeft } from "./icons";
 
 export const iconRegistry = {
   ChevronLeft,
