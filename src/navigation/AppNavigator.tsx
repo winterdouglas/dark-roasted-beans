@@ -36,7 +36,11 @@ const AppStack = () => {
   return (
     <Stack.Navigator
       initialRouteName="Home"
-      screenOptions={{ headerShown: false }}>
+      screenOptions={{
+        headerShown: false,
+        headerBackVisible: false,
+        headerShadowVisible: false,
+      }}>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Overview" component={OverviewScreen} />
     </Stack.Navigator>
