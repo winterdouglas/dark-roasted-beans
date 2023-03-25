@@ -1,25 +1,52 @@
 import React, { useLayoutEffect, type DependencyList } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { TextStyle } from "react-native";
+import { useNavigation, useTheme } from "@react-navigation/native";
 import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
-import { Text, TextProps, Icon } from "@components";
+import { Text, TextProps, Icon, IconProps } from "@components";
+
+type UseHeaderProps = TextProps & {
+  title?: string;
+  icon?: IconProps["icon"];
+  onLeftIconPress?: () => void;
+  iconProps?: IconProps;
+};
 
 /**
  * A hook that can be used to set the header of react-navigation screen from within the screen's component.
  */
-export function useHeader(headerProps: TextProps, deps: DependencyList = []) {
+export function useHeader(
+  { title, icon, onLeftIconPress, iconProps, ...textProps }: UseHeaderProps,
+  deps: DependencyList = [],
+) {
   const navigation = useNavigation();
+  const { colors } = useTheme();
+  const color = colors.primary;
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
       headerLeft: ({ canGoBack }) =>
         canGoBack ? (
-          <Icon icon="ChevronLeft" onPress={navigation.goBack} />
+          <Icon
+            icon={icon || "ChevronLeft"}
+            onPress={onLeftIconPress || navigation.goBack}
+            color={color}
+            {...iconProps}
+          />
         ) : null,
       headerTitle: () => (
-        <Text style={{ flex: 1 }} preset="heading" {...headerProps} />
+        <Text
+          style={[$titleStyle, { color }]}
+          text={title}
+          preset="heading"
+          {...textProps}
+        />
       ),
     } as NativeStackNavigationOptions);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 }
+
+const $titleStyle: TextStyle = {
+  flex: 1,
+};

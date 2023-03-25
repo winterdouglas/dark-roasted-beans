@@ -12,6 +12,7 @@ import {
 
 import { HomeScreen } from "screens/Home";
 import { OverviewScreen } from "screens/Overview";
+import { darkTheme, lightTheme } from "theme";
 
 /**
  * This type allows TypeScript to know what routes are defined in the navigator.
@@ -54,7 +55,7 @@ export const AppNavigator = (props: NavigationProps) => {
 
   return (
     <NavigationContainer
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+      theme={colorScheme === "dark" ? darkTheme : lightTheme}
       {...props}>
       <AppStack />
     </NavigationContainer>
