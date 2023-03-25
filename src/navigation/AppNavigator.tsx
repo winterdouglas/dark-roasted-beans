@@ -11,6 +11,7 @@ import {
 } from "@react-navigation/native-stack";
 
 import { HomeScreen } from "screens/Home";
+import { OverviewScreen } from "screens/Overview";
 
 /**
  * This type allows TypeScript to know what routes are defined in the navigator.
@@ -20,6 +21,7 @@ import { HomeScreen } from "screens/Home";
  */
 export type AppStackParamList = {
   Home: undefined;
+  Overview: undefined;
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> =
@@ -36,12 +38,12 @@ const AppStack = () => {
       initialRouteName="Home"
       screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Overview" component={OverviewScreen} />
     </Stack.Navigator>
   );
 };
 
-interface NavigationProps
-  extends Partial<ComponentProps<typeof NavigationContainer>> {}
+type NavigationProps = Partial<ComponentProps<typeof NavigationContainer>>;
 
 export const AppNavigator = (props: NavigationProps) => {
   const colorScheme = useColorScheme();
@@ -54,3 +56,9 @@ export const AppNavigator = (props: NavigationProps) => {
     </NavigationContainer>
   );
 };
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends AppStackParamList {}
+  }
+}
