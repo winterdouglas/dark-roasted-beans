@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, type DependencyList } from "react";
+import React, { useLayoutEffect } from "react";
 import { TextStyle } from "react-native";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
@@ -14,10 +14,13 @@ type UseHeaderProps = TextProps & {
 /**
  * A hook that can be used to set the header of react-navigation screen from within the screen's component.
  */
-export function useHeader(
-  { title, icon, onLeftIconPress, iconProps, ...textProps }: UseHeaderProps,
-  deps: DependencyList = [],
-) {
+export function useHeader({
+  title,
+  icon,
+  onLeftIconPress,
+  iconProps,
+  ...textProps
+}: UseHeaderProps) {
   const navigation = useNavigation();
   const { colors } = useTheme();
   const color = colors.primary;
@@ -43,8 +46,7 @@ export function useHeader(
         />
       ),
     } as NativeStackNavigationOptions);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps);
+  }, [color, icon, iconProps, navigation, onLeftIconPress, textProps, title]);
 }
 
 const $titleStyle: TextStyle = {
