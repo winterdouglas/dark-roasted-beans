@@ -7,6 +7,9 @@ import {
 import { iconRegistry, Icons } from "assets/icons/iconsRegistry";
 
 export type IconProps = {
+  /**
+   * The icon to display
+   */
   icon: Icons;
   /**
    * An optional color for the icon

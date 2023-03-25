@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 export const HomeScreen = () => {
   const navigation = useNavigation();
   useHeader({
-    text: "This is the title!",
+    title: "This is the title!",
   });
 
   return (

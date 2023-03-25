@@ -4,7 +4,7 @@ import { useHeader } from "hooks/useHeader";
 
 export const OverviewScreen = () => {
   useHeader({
-    text: "This is the other screen!",
+    title: "This is the other screen!",
   });
 
   return (
