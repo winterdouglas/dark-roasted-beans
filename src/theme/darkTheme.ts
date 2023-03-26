@@ -5,13 +5,13 @@ export const darkTheme: ExtendedTheme = {
   colors: {
     ...DarkTheme.colors,
     primary: "#FFFFFF",
-    background: "#000000",
-    card: "#000000",
+    background: "#1C1C1C",
+    card: "#1C1C1C",
     text: "#FFFFFF",
 
     onPrimary: "#000000",
     secondary: "#AED7A0",
-    onSecondary: "#FFFFFF",
+    onSecondary: "#000000",
     shadow: "#FFFFFF",
   },
 };

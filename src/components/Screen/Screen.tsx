@@ -6,6 +6,8 @@ import {
   type StyleProp,
   View,
   type ViewStyle,
+  StatusBar,
+  TextStyle,
 } from "react-native";
 
 import { spacing } from "@theme";
@@ -15,6 +17,7 @@ import {
 } from "@hooks/useSafeAreaInsetsStyle";
 import { HeaderProps, useHeader } from "@hooks/useHeader";
 import { Text } from "@components";
+import { useTheme } from "@react-navigation/native";
 
 type BaseScreenProps = HeaderProps & {
   /**
@@ -49,15 +52,11 @@ type BaseScreenProps = HeaderProps & {
   /**
    * Status bar setting. Defaults to dark.
    */
-  statusBarStyle?: "light" | "dark";
+  statusBarStyle?: "light-content" | "dark-content";
   /**
    * By how much should we offset the keyboard? Defaults to 0.
    */
   keyboardOffset?: number;
-  /**
-   * Pass any additional props directly to the StatusBar component.
-   */
-  // StatusBarProps?: StatusBarProps;
   /**
    * Pass any additional props directly to the KeyboardAvoidingView component.
    */
@@ -77,6 +76,10 @@ const ScreenWithoutScrolling = ({
   contentContainerStyle,
   children,
 }: ScreenProps) => {
+  const { colors } = useTheme();
+
+  const $subtitleStyle: StyleProp<TextStyle> = [{ color: colors.text }];
+
   return (
     <View style={[$outerStyle, style]}>
       <View
@@ -85,7 +88,7 @@ const ScreenWithoutScrolling = ({
           contentHorizontalPadding && { paddingHorizontal: spacing.medium },
           contentContainerStyle,
         ]}>
-        <Text preset="subheading" text={subtitle} />
+        <Text preset="subheading" style={$subtitleStyle} text={subtitle} />
         {children}
       </View>
     </View>
@@ -101,20 +104,21 @@ export const Screen = ({
   ...props
 }: ScreenProps) => {
   useHeader({ title, leftIcon, onLeftIconPress, iconProps, titleProps });
+  const { dark } = useTheme();
 
   const {
     backgroundColor,
     KeyboardAvoidingViewProps,
     keyboardOffset = 0,
     safeAreaEdges = ["bottom"],
-    // statusBarStyle = "dark",
+    statusBarStyle = dark ? "light-content" : "dark-content",
   } = props;
 
   const $containerInsets = useSafeAreaInsetsStyle(safeAreaEdges);
 
   return (
     <View style={[$containerStyle, { backgroundColor }, $containerInsets]}>
-      {/* <StatusBar style={statusBarStyle} {...StatusBarProps} /> */}
+      <StatusBar barStyle={statusBarStyle} />
 
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}

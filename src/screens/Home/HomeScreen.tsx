@@ -16,6 +16,7 @@ export const HomeScreen = () => {
         }}
       />
       <ListItem
+        round
         text="Continue"
         onPress={() => navigation.navigate("Overview")}
       />
