@@ -9,6 +9,7 @@ import {
 import { HomeScreen } from "screens/Home";
 import { OverviewScreen } from "screens/Overview";
 import { darkTheme, lightTheme } from "theme";
+import { PickerScreen } from "screens/Picker";
 
 /**
  * This type allows TypeScript to know what routes are defined in the navigator.
@@ -19,6 +20,7 @@ import { darkTheme, lightTheme } from "theme";
 export type AppStackParamList = {
   Home: undefined;
   Overview: undefined;
+  Picker: { selectionType: "type" | "size" | "extras" };
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> =
@@ -39,14 +41,15 @@ const AppStack = () => {
         headerShadowVisible: false,
       }}>
       <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Picker" component={PickerScreen} />
       <Stack.Screen name="Overview" component={OverviewScreen} />
     </Stack.Navigator>
   );
 };
 
-type NavigationProps = Partial<ComponentProps<typeof NavigationContainer>>;
+type AppNavigatorProps = Partial<ComponentProps<typeof NavigationContainer>>;
 
-export const AppNavigator = (props: NavigationProps) => {
+export const AppNavigator = (props: AppNavigatorProps) => {
   const colorScheme = useColorScheme();
   const theme = colorScheme === "dark" ? darkTheme : lightTheme;
   return (
