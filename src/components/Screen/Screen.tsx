@@ -13,8 +13,14 @@ import {
   type ExtendedEdge,
   useSafeAreaInsetsStyle,
 } from "@hooks/useSafeAreaInsetsStyle";
+import { HeaderProps, useHeader } from "@hooks/useHeader";
+import { Text } from "@components";
 
-type BaseScreenProps = {
+type BaseScreenProps = HeaderProps & {
+  /**
+   * Screen subtitle.
+   */
+  subtitle?: string;
   /**
    * Children components.
    */
@@ -65,6 +71,7 @@ type FixedScreenProps = BaseScreenProps & {
 export type ScreenProps = FixedScreenProps;
 
 const ScreenWithoutScrolling = ({
+  subtitle,
   style,
   contentHorizontalPadding = true,
   contentContainerStyle,
@@ -78,14 +85,22 @@ const ScreenWithoutScrolling = ({
           contentHorizontalPadding && { paddingHorizontal: spacing.medium },
           contentContainerStyle,
         ]}>
+        <Text preset="subheading" text={subtitle} />
         {children}
       </View>
     </View>
   );
 };
 
-export const Screen = (props: ScreenProps) => {
-  // const { theme } = useTheme();
+export const Screen = ({
+  title,
+  titleProps,
+  leftIcon,
+  iconProps,
+  onLeftIconPress,
+  ...props
+}: ScreenProps) => {
+  useHeader({ title, leftIcon, onLeftIconPress, iconProps, titleProps });
 
   const {
     backgroundColor,

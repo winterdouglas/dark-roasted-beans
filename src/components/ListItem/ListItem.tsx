@@ -7,28 +7,18 @@ import {
   View,
   ViewStyle,
 } from "react-native";
+import { useTheme } from "@react-navigation/native";
 import { spacing } from "@theme";
 import { Icon, Icons } from "../Icon";
 import { Text, TextProps } from "../Text";
-import { PressableOpacity } from "../PressableOpacity";
-import { useTheme } from "@react-navigation/native";
+import { PressableScale } from "components/PressableScale";
 
-export type ListItemProps<TPressableProps extends PressableProps> = {
+export type ListItemProps = PressableProps & {
   /**
    * How tall the list item should be.
    * Default: 94
    */
   height?: number;
-  /**
-   * Whether to show the top separator.
-   * Default: false
-   */
-  topSeparator?: boolean;
-  /**
-   * Whether to show the bottom separator.
-   * Default: false
-   */
-  bottomSeparator?: boolean;
   /**
    * Text to display if not using `tx` or nested components.
    */
@@ -86,11 +76,7 @@ export type ListItemProps<TPressableProps extends PressableProps> = {
   /**
    * Custom pressable
    */
-  PressableComponent?: ComponentType<TPressableProps>;
-  /**
-   * Custom pressable props
-   */
-  pressableProps?: TPressableProps;
+  PressableComponent?: ComponentType<PressableProps>;
 };
 
 type ListItemActionProps = {
@@ -103,7 +89,7 @@ type ListItemActionProps = {
 /**
  * A styled row component that can be used in FlatList, SectionList, or by itself.
  */
-export const ListItem = <TPressableProps extends PressableProps>({
+export const ListItem = ({
   children,
   height = 94,
   LeftComponent,
@@ -119,8 +105,8 @@ export const ListItem = <TPressableProps extends PressableProps>({
   textStyle: $textStyleOverride,
   containerStyle: $containerStyleOverride,
   PressableComponent,
-  pressableProps,
-}: ListItemProps<TPressableProps>) => {
+  ...pressableProps
+}: ListItemProps) => {
   const { colors } = useTheme();
   const { secondary, onSecondary, shadow } = colors;
 
@@ -151,7 +137,7 @@ export const ListItem = <TPressableProps extends PressableProps>({
     style,
   ];
 
-  const Pressable = PressableComponent || PressableOpacity;
+  const Pressable = PressableComponent || PressableScale;
 
   return (
     <View style={$containerStyleOverride}>

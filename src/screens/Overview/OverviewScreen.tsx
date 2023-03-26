@@ -1,14 +1,9 @@
 import React from "react";
 import { Screen, Text } from "components";
-import { useHeader } from "hooks/useHeader";
 
 export const OverviewScreen = () => {
-  useHeader({
-    title: "This is the other screen!",
-  });
-
   return (
-    <Screen>
+    <Screen title="Brew with Lex" subtitle="Overview">
       <Text preset="bold" text="Another screen" />
     </Screen>
   );
