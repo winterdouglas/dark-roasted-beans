@@ -1,5 +1,4 @@
 import "@react-navigation/native";
-import { ColorValue } from "react-native";
 
 declare module "@react-navigation/native" {
   export type ExtendedTheme = {
@@ -8,32 +7,32 @@ declare module "@react-navigation/native" {
       /**
        * The primary color of the app used to tint various elements. Usually you'll want to use your brand color for this.
        */
-      primary: ColorValue;
+      primary: string;
       /**
        * The color of various backgrounds, such as background color for the screens.
        */
-      background: ColorValue;
+      background: string;
       /**
        * The background color of card-like elements, such as headers, tab bars etc.
        */
-      card: ColorValue;
+      card: string;
       /**
        * The text color of various elements.
        */
-      text: ColorValue;
+      text: string;
       /**
        * The color of borders, e.g. header border, tab bar border etc.
        */
-      border: ColorValue;
+      border: string;
       /**
        * The color of Tab Navigator badge.
        */
-      notification: ColorValue;
+      notification: string;
 
-      onPrimary: ColorValue;
-      secondary: ColorValue;
-      onSecondary: ColorValue;
-      shadow: ColorValue;
+      onPrimary: string;
+      secondary: string;
+      onSecondary: string;
+      shadow: string;
     };
   };
 

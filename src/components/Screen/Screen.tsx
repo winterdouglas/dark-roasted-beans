@@ -50,10 +50,6 @@ type BaseScreenProps = HeaderProps & {
    */
   backgroundColor?: string;
   /**
-   * Status bar setting. Defaults to dark.
-   */
-  statusBarStyle?: "light-content" | "dark-content";
-  /**
    * By how much should we offset the keyboard? Defaults to 0.
    */
   keyboardOffset?: number;
@@ -104,21 +100,20 @@ export const Screen = ({
   ...props
 }: ScreenProps) => {
   useHeader({ title, leftIcon, onLeftIconPress, iconProps, titleProps });
-  const { dark } = useTheme();
+  const { colors } = useTheme();
 
   const {
     backgroundColor,
     KeyboardAvoidingViewProps,
     keyboardOffset = 0,
     safeAreaEdges = ["bottom"],
-    statusBarStyle = dark ? "light-content" : "dark-content",
   } = props;
 
   const $containerInsets = useSafeAreaInsetsStyle(safeAreaEdges);
 
   return (
     <View style={[$containerStyle, { backgroundColor }, $containerInsets]}>
-      <StatusBar barStyle={statusBarStyle} />
+      <StatusBar backgroundColor={backgroundColor || colors.background} />
 
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}
