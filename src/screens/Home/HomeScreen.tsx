@@ -20,7 +20,7 @@ export const HomeScreen = () => {
         }}
       />
       <List
-        data={["Lungo", "Capuccino"]}
+        data={["Lungo", "Cappuccino"]}
         getItemProps={(item) => {
           return { text: item, leftIcon: "ChevronLeft" };
         }}
