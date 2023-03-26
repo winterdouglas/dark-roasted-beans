@@ -10,10 +10,10 @@ export type PressableScaleProps = PressableProps & {
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
-export function PressableScale({
-  activeScale = 0.96,
+export const PressableScale = ({
+  activeScale = 0.98,
   ...props
-}: PressableScaleProps) {
+}: PressableScaleProps) => {
   const [animatedStyle, animate] = useScaleAnimationStyle(1);
 
   return (
@@ -31,4 +31,4 @@ export function PressableScale({
       {props.children}
     </AnimatedPressable>
   );
-}
+};

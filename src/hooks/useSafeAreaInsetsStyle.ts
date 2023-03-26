@@ -23,8 +23,7 @@ function isExtended(edge: ExtendedEdge): edge is "start" | "end" {
 
 /**
  * A hook that can be used to create a safe-area-aware style object that can be passed directly to a View.
- *
- * - [Documentation and Examples](https://github.com/infinitered/ignite/blob/master/docs/Utils-useSafeAreaInsetsStyle.md)
+ * This has been taken from Ignite and tweaked with better typings.
  */
 export function useSafeAreaInsetsStyle(
   safeAreaEdges: ExtendedEdge[] = [],

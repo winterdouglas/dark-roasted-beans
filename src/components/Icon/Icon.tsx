@@ -4,7 +4,7 @@ import {
   PressableOpacity,
   PressableOpacityProps,
 } from "components/PressableOpacity";
-import { iconRegistry, Icons } from "./iconsRegistry";
+import { iconRegistry } from "./iconsRegistry";
 
 export type IconProps = {
   /**
@@ -67,3 +67,5 @@ export const Icon = (props: IconProps) => {
     </WrapperComponent>
   );
 };
+
+export type Icons = keyof typeof iconRegistry;

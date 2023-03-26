@@ -8,9 +8,9 @@ export const spacing = {
   extraSmall: 8,
   small: 12,
   medium: 16,
-  large: 24,
-  extraLarge: 32,
-  huge: 48,
+  large: 20,
+  extraLarge: 24,
+  huge: 32,
   massive: 64,
 } as const;
 

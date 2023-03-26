@@ -12,5 +12,6 @@ export const darkTheme: ExtendedTheme = {
     onPrimary: "#000000",
     secondary: "#AED7A0",
     onSecondary: "#FFFFFF",
+    shadow: "#FFFFFF",
   },
 };

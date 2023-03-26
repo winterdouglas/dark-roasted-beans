@@ -12,5 +12,6 @@ export const lightTheme: ExtendedTheme = {
     onPrimary: "#FFFFFF",
     secondary: "#AED7A0",
     onSecondary: "#FFFFFF",
+    shadow: "#000000",
   },
 };

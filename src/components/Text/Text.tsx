@@ -91,7 +91,7 @@ const $fontWeightStyles = Object.entries(typography.primary).reduce(
 const $baseStyle: StyleProp<TextStyle> = [
   $sizeStyles.sm,
   $fontWeightStyles.normal,
-  { fontWeight: "500" },
+  { fontWeight: "500", letterSpacing: 0.374 },
 ];
 
 // Because we don't use font variations we instead set the font weight directly
