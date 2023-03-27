@@ -11,6 +11,7 @@ import {
 import { Config } from "~config";
 import { useAppDispatch } from "~hooks/useAppDispatch";
 import { useTranslation } from "react-i18next";
+import { ListItem } from "~components";
 
 type PickerScreenProps = AppStackScreenProps<"Picker"> & {};
 
@@ -65,11 +66,13 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
           },
         })}
       />
-      {/* <ListItem
-        round
-        text="Continue"
-        onPress={() => navigation.navigate("Overview")}
-      /> */}
+      {selectionType === "extras" && (
+        <ListItem
+          round
+          text="Continue"
+          onPress={() => navigation.navigate("Overview")}
+        />
+      )}
     </Screen>
   );
 };
