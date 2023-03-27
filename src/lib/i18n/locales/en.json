@@ -1,7 +1,5 @@
 {
-  "common": {
-    "continue": "Continue"
-  },
+  "common": {},
   "scan": {
     "title": "Dark Roasted Beans",
     "subtitle": "Tap the machine to start",
@@ -17,7 +15,8 @@
   },
   "extras": {
     "title": "Brew with Lex",
-    "subtitle": "Select your extra's"
+    "subtitle": "Select your extra's",
+    "continue": "Continue"
   },
   "overview": {
     "title": "Brew with Lex",

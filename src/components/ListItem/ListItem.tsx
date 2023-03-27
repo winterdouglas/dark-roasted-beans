@@ -12,7 +12,6 @@ import { spacing } from "~theme";
 import { Icon, Icons } from "~components/Icon";
 import { Text, TextProps } from "~components/Text";
 import { PressableScale } from "~components/PressableScale";
-import { Separator } from "~components/Separator";
 
 export type ListItemProps = PressableProps & {
   /**
@@ -113,8 +112,6 @@ export const ListItem = ({
   RightComponent,
   rightIcon,
   rightIconColor,
-  topSeparator,
-  bottomSeparator,
   style,
   text,
   textProps,
@@ -155,26 +152,10 @@ export const ListItem = ({
     style,
   ];
 
-  const $baseSeparatorStyle: StyleProp<ViewStyle> = {
-    backgroundColor: onSecondary,
-  };
-
-  const $topSeparatorStyle: StyleProp<ViewStyle> = [
-    $baseSeparatorStyle,
-    { position: "absolute", left: 0, top: 0, right: 0 },
-  ];
-
-  const $bottomSeparatorStyle: StyleProp<ViewStyle> = [
-    $baseSeparatorStyle,
-    { position: "absolute", left: 0, bottom: 0, right: 0 },
-  ];
-
   const Pressable = PressableComponent || PressableScale;
 
   return (
     <View style={$containerStyleOverride}>
-      {topSeparator && <Separator preset="line" style={$topSeparatorStyle} />}
-
       <Pressable {...pressableProps} style={$pressableStyles}>
         <ListItemAction
           size={height}
@@ -183,7 +164,7 @@ export const ListItem = ({
           Component={LeftComponent}
         />
 
-        <Text {...textProps} preset="list" text={text} style={$textStyles}>
+        <Text preset="list" text={text} style={$textStyles} {...textProps}>
           {children}
         </Text>
 
@@ -194,10 +175,6 @@ export const ListItem = ({
           Component={RightComponent}
         />
       </Pressable>
-
-      {bottomSeparator && (
-        <Separator preset="line" style={$bottomSeparatorStyle} />
-      )}
     </View>
   );
 };

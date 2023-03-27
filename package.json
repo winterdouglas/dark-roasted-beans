@@ -18,7 +18,6 @@
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "@reduxjs/toolkit": "^1.9.3",
-    "@shopify/flash-list": "^1.4.2",
     "i18next": "^22.4.13",
     "lottie-react-native": "^6.0.0-rc.3",
     "react": "18.2.0",

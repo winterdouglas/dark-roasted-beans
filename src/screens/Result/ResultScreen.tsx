@@ -3,8 +3,8 @@ import { ViewStyle } from "react-native";
 import { useTranslation } from "react-i18next";
 import Lottie from "lottie-react-native";
 import { Screen } from "~components/Screen";
-import { ListItem } from "~components/ListItem";
 import { AppStackScreenProps } from "~navigation/AppNavigator";
+import { Button } from "~components/Button";
 
 type ResultScreenProps = AppStackScreenProps<"Result"> & {};
 
@@ -22,7 +22,7 @@ export const ResultScreen = ({ navigation }: ResultScreenProps) => {
         loop={false}
         style={$animationStyle}
       />
-      <ListItem text={t("restart")} onPress={navigation.popToTop} />
+      <Button text={t("restart")} onPress={navigation.popToTop} />
     </Screen>
   );
 };

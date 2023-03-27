@@ -6,7 +6,7 @@ import { setSelection } from "~features/coffee-brewing/store";
 import { Config } from "~config";
 import { useAppDispatch } from "~hooks/useAppDispatch";
 import { useTranslation } from "react-i18next";
-import { ListItem } from "~components";
+import { Button } from "~components";
 import { useGetCoffeeMachineItemsByTypeQuery } from "~features/coffee-brewing/hooks/useGetCoffeeMachineItemsByTypeQuery";
 
 type PickerScreenProps = AppStackScreenProps<"Picker"> & {};
@@ -28,6 +28,7 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
         data={items}
         getItemProps={(item) => ({
           text: item.name,
+          disabled: selectionType === "extras",
           onPress: () => {
             dispatch(
               setSelection({
@@ -46,9 +47,8 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
         })}
       />
       {selectionType === "extras" && (
-        <ListItem
-          round
-          text="Continue"
+        <Button
+          text={t("continue")}
           onPress={() => navigation.navigate("Overview")}
         />
       )}

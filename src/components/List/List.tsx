@@ -1,13 +1,14 @@
-import React from "react";
-import { ContentStyle, FlashList, FlashListProps } from "@shopify/flash-list";
+import React, { ComponentType } from "react";
+import { FlatList, FlatListProps, StyleProp, ViewStyle } from "react-native";
+import { useTheme } from "@react-navigation/native";
 import { spacing } from "~theme";
 import { ListItem, type ListItemProps } from "~components/ListItem";
-import { PressableScale } from "~components/PressableScale";
 import { Separator } from "~components/Separator";
+import { PressableScale } from "~components/PressableScale";
 
-type BaseListProps<TItem> = Omit<FlashListProps<TItem>, "renderItem"> & {
+type BaseListProps<TItem> = Omit<FlatListProps<TItem>, "renderItem"> & {
   getItemProps?: (item: TItem, index: number) => ListItemProps;
-  renderItem?: FlashListProps<TItem>["renderItem"];
+  renderItem?: FlatListProps<TItem>["renderItem"];
 };
 
 type DefaultListProps<TItem> = BaseListProps<TItem> & {
@@ -29,10 +30,18 @@ export function List<TItem>({
   getItemProps,
   ...ListProps
 }: ListProps<TItem>) {
-  const $listContainerStyle: ContentStyle = {
-    ...$listContainerPresets[preset],
-    ...(ListProps?.contentContainerStyle ?? {}),
+  const { colors } = useTheme();
+
+  const $themeContainerStyles = {
+    default: {} as StyleProp<ViewStyle>,
+    continuous: { backgroundColor: colors.secondary } as StyleProp<ViewStyle>,
   };
+
+  const $listContainerStyle: StyleProp<ViewStyle> = [
+    $listContainerPresets[preset],
+    $themeContainerStyles[preset],
+    ListProps?.contentContainerStyle,
+  ];
 
   const $ListProps = { ...$listProps[preset], ...ListProps };
 
@@ -41,10 +50,9 @@ export function List<TItem>({
   const itemSize = ItemSizes[preset];
 
   return (
-    <FlashList<TItem>
+    <FlatList<TItem>
       contentContainerStyle={$listContainerStyle}
       data={data}
-      estimatedItemSize={itemSize}
       renderItem={(info) => {
         if (renderItem) return renderItem(info);
         return (
@@ -61,6 +69,13 @@ export function List<TItem>({
   );
 }
 
+const ListLineSeparator = () => {
+  const { colors } = useTheme();
+  return (
+    <Separator preset="line" style={{ backgroundColor: colors.onSecondary }} />
+  );
+};
+
 const ItemSizes = {
   default: 94,
 
@@ -70,17 +85,23 @@ const ItemSizes = {
 const $listItemProps = {
   default: { round: true, shadowed: true } as ListItemProps,
 
-  continuous: { bottomSeparator: true } as ListItemProps,
+  continuous: {} as ListItemProps,
 };
 
 const $listProps = {
-  default: { ItemSeparatorComponent: Separator } as FlashListProps<any>,
+  default: { ItemSeparatorComponent: Separator } as FlatListProps<any>,
 
-  continuous: {} as FlashListProps<any>,
+  continuous: {
+    ItemSeparatorComponent: ListLineSeparator as ComponentType,
+  } as FlatListProps<any>,
 };
 
 const $listContainerPresets = {
-  default: { paddingVertical: spacing.medium } as ContentStyle,
+  default: { marginVertical: spacing.medium } as ViewStyle,
 
-  continuous: { paddingVertical: spacing.medium } as ContentStyle,
+  continuous: {
+    marginVertical: spacing.medium,
+    borderRadius: spacing.extraSmall,
+    overflow: "hidden",
+  } as ViewStyle,
 };

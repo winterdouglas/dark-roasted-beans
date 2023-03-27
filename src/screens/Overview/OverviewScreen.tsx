@@ -10,8 +10,8 @@ import {
   selectCurrentSelection,
 } from "~features/coffee-brewing/store";
 import { useAppSelector } from "~hooks/useAppSelector";
-import { ListItem } from "~components/ListItem";
 import { AppStackScreenProps } from "~navigation";
+import { Button } from "~components/Button";
 
 const MachineId = Config.MACHINE_ID;
 
@@ -51,16 +51,10 @@ export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
         preset="continuous"
         getItemProps={(item) => ({
           text: item.name,
-          onPress: () => {},
+          disabled: true,
         })}
       />
-      <ListItem
-        round
-        text={t("brew")}
-        onPress={() => {
-          navigation.navigate("Result");
-        }}
-      />
+      <Button text={t("brew")} onPress={() => navigation.navigate("Result")} />
     </Screen>
   );
 };
