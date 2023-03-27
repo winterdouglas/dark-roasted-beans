@@ -47,6 +47,7 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
     <Screen title={t("title")} subtitle={t("subtitle")}>
       <List
         data={items}
+        preset="continuous"
         getItemProps={(item) => ({
           text: item.name,
           onPress: () => {

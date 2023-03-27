@@ -1,10 +1,10 @@
 import React from "react";
-import { View, ViewStyle } from "react-native";
+import { View } from "react-native";
 import { ContentStyle, FlashList, FlashListProps } from "@shopify/flash-list";
 import { spacing } from "~theme";
-// import { EmptyState } from "~components/EmptyState";
 import { ListItem, type ListItemProps } from "~components/ListItem";
 import { PressableScale } from "~components/PressableScale";
+import { Separator } from "~components/Separator";
 
 type BaseListProps<TItem> = Omit<FlashListProps<TItem>, "renderItem"> & {
   getItemProps?: (item: TItem, index: number) => ListItemProps;
@@ -14,21 +14,30 @@ type DefaultListProps<TItem> = BaseListProps<TItem> & {
   preset?: "default";
 };
 
-export type ListProps<TItem> = DefaultListProps<TItem>;
+interface ContinuousListProps<TItem> extends BaseListProps<TItem> {
+  preset?: "continuous";
+}
+
+export type ListProps<TItem> =
+  | DefaultListProps<TItem>
+  | ContinuousListProps<TItem>;
 
 function DefaultList<TItem>({
   data,
   getItemProps,
   ...ListProps
 }: DefaultListProps<TItem>) {
-  const $listContainerStyle = $listContainerPresets.default;
+  const $listContainerStyles = {
+    ...$listContainerPresets.default,
+    ...(ListProps?.contentContainerStyle ?? {}),
+  };
   const itemSize = ItemSizes.default;
 
   return (
     <FlashList<TItem>
-      contentContainerStyle={$listContainerStyle}
+      contentContainerStyle={$listContainerStyles}
       data={data}
-      ItemSeparatorComponent={EmptySeparator}
+      ItemSeparatorComponent={Separator}
       estimatedItemSize={itemSize}
       // ListEmptyComponent={EmptyState}
       renderItem={({ item, index }) => {
@@ -46,22 +55,56 @@ function DefaultList<TItem>({
   );
 }
 
-export function List<TItem>(props: ListProps<TItem>) {
-  return <DefaultList {...props} />;
+function ContinousList<TItem>({
+  data,
+  getItemProps,
+  ...ListProps
+}: ContinuousListProps<TItem>) {
+  const $listContainerStyle: ContentStyle = {
+    ...$listContainerPresets.continuous,
+    ...(ListProps?.contentContainerStyle ?? {}),
+  };
+  const itemSize = ItemSizes.continous;
+
+  return (
+    <FlashList<TItem>
+      contentContainerStyle={$listContainerStyle}
+      data={data}
+      estimatedItemSize={itemSize}
+      // ListEmptyComponent={EmptyState}
+      renderItem={({ item, index }) => {
+        return (
+          <ListItem
+            height={itemSize}
+            bottomSeparator
+            shadowed={false}
+            PressableComponent={PressableScale}
+            {...((getItemProps && getItemProps(item, index)) || {})}
+          />
+        );
+      }}
+      {...ListProps}
+    />
+  );
+}
+
+export function List<TItem>({
+  preset = "default",
+  ...props
+}: ListProps<TItem>) {
+  return preset === "default" ? (
+    <DefaultList {...props} />
+  ) : (
+    <ContinousList {...props} />
+  );
 }
 
 const ItemSizes = {
   default: 94,
+  continous: 90,
 } as const;
-
-const EmptySeparator = () => {
-  return <View style={$emptySeparator} />;
-};
-
-const $emptySeparator: ViewStyle = {
-  height: spacing.extraSmall,
-};
 
 const $listContainerPresets = {
   default: { paddingVertical: spacing.medium } as ContentStyle,
+  continuous: { paddingVertical: spacing.medium } as ContentStyle,
 };

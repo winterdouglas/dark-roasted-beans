@@ -12,6 +12,7 @@ import { spacing } from "~theme";
 import { Icon, Icons } from "~components/Icon";
 import { Text, TextProps } from "~components/Text";
 import { PressableScale } from "~components/PressableScale";
+import { Separator } from "~components/Separator";
 
 export type ListItemProps = PressableProps & {
   /**
@@ -20,6 +21,16 @@ export type ListItemProps = PressableProps & {
    */
   height?: number;
   /**
+   * Whether to show the top separator.
+   * Default: false
+   */
+  topSeparator?: boolean;
+  /**
+   * Whether to show the bottom separator.
+   * Default: false
+   */
+  bottomSeparator?: boolean;
+  /**
    * Text to display if not using `tx` or nested components.
    */
   text?: TextProps["text"];
@@ -27,6 +38,10 @@ export type ListItemProps = PressableProps & {
    * Whether the list item is round or not
    */
   round?: boolean;
+  /**
+   * Whether the list item is shadowed or not
+   */
+  shadowed?: boolean;
   /**
    * Children components.
    */
@@ -98,10 +113,13 @@ export const ListItem = ({
   RightComponent,
   rightIcon,
   rightIconColor,
+  topSeparator,
+  bottomSeparator,
   style,
   text,
   textProps,
   round,
+  shadowed = true,
   textStyle: $textStyleOverride,
   containerStyle: $containerStyleOverride,
   PressableComponent,
@@ -129,18 +147,34 @@ export const ListItem = ({
   const $pressableStyles: StyleProp<ViewStyle> = [
     $pressableStyle,
     round && $roundStyle,
+    shadowed && $pressableShadowStyles,
     {
       minHeight: height,
       backgroundColor: secondary,
-      ...$pressableShadowStyles,
     },
     style,
+  ];
+
+  const $baseSeparatorStyle: StyleProp<ViewStyle> = {
+    backgroundColor: onSecondary,
+  };
+
+  const $topSeparatorStyle: StyleProp<ViewStyle> = [
+    $baseSeparatorStyle,
+    { position: "absolute", left: 0, top: 0, right: 0 },
+  ];
+
+  const $bottomSeparatorStyle: StyleProp<ViewStyle> = [
+    $baseSeparatorStyle,
+    { position: "absolute", left: 0, bottom: 0, right: 0 },
   ];
 
   const Pressable = PressableComponent || PressableScale;
 
   return (
     <View style={$containerStyleOverride}>
+      {topSeparator && <Separator preset="line" style={$topSeparatorStyle} />}
+
       <Pressable {...pressableProps} style={$pressableStyles}>
         <ListItemAction
           size={height}
@@ -160,6 +194,10 @@ export const ListItem = ({
           Component={RightComponent}
         />
       </Pressable>
+
+      {bottomSeparator && (
+        <Separator preset="line" style={$bottomSeparatorStyle} />
+      )}
     </View>
   );
 };

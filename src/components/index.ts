@@ -5,4 +5,5 @@ export * from "./ListItem";
 export * from "./PressableOpacity";
 export * from "./PressableScale";
 export * from "./Screen";
+export * from "./Separator";
 export * from "./Text";
