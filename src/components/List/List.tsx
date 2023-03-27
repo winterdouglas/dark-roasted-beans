@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 import { ContentStyle, FlashList, FlashListProps } from "@shopify/flash-list";
 import { spacing } from "~theme";
 import { ListItem, type ListItemProps } from "~components/ListItem";
