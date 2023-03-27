@@ -1,10 +1,10 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
 import { ContentStyle, FlashList, FlashListProps } from "@shopify/flash-list";
-import { spacing } from "@theme";
-// import { EmptyState } from "@components/EmptyState";
-import { ListItem, type ListItemProps } from "@components/ListItem";
-import { PressableScale } from "@components/PressableScale";
+import { spacing } from "~theme";
+// import { EmptyState } from "~components/EmptyState";
+import { ListItem, type ListItemProps } from "~components/ListItem";
+import { PressableScale } from "~components/PressableScale";
 
 type BaseListProps<TItem> = Omit<FlashListProps<TItem>, "renderItem"> & {
   getItemProps?: (item: TItem, index: number) => ListItemProps;

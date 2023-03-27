@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Screen } from "@components/Screen";
-import { ListItem } from "@components/ListItem";
-import { AppStackScreenProps } from "@navigation";
-import { CoffeePicker } from "@features/coffee-brewing/components";
+import { Screen } from "~components/Screen";
+import { ListItem } from "~components/ListItem";
+import { AppStackScreenProps } from "~navigation";
+import { CoffeePicker } from "~features/coffee-brewing/components";
 
 type PickerScreenProps = AppStackScreenProps<"Picker"> & {};
 

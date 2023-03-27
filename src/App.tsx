@@ -4,7 +4,7 @@ import {
   SafeAreaProvider,
 } from "react-native-safe-area-context";
 
-import { AppNavigator } from "@navigation";
+import { AppNavigator } from "~navigation";
 
 const App = () => {
   return (

@@ -2,8 +2,8 @@ import React, { DependencyList, useLayoutEffect } from "react";
 import { TextStyle } from "react-native";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
-import { Text, TextProps } from "@components/Text";
-import { Icon, IconProps } from "@components/Icon";
+import { Text, TextProps } from "~components/Text";
+import { Icon, IconProps } from "~components/Icon";
 
 export type HeaderProps = {
   /**

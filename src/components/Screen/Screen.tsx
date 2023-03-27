@@ -11,13 +11,13 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 
-import { spacing } from "@theme";
+import { spacing } from "~theme";
 import {
   type ExtendedEdge,
   useSafeAreaInsetsStyle,
-} from "@hooks/useSafeAreaInsetsStyle";
-import { HeaderProps, useHeader } from "@hooks/useHeader";
-import { Text } from "@components/Text";
+} from "~hooks/useSafeAreaInsetsStyle";
+import { HeaderProps, useHeader } from "~hooks/useHeader";
+import { Text } from "~components/Text";
 
 type BaseScreenProps = HeaderProps & {
   /**

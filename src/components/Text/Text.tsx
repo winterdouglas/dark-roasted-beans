@@ -5,7 +5,7 @@ import {
   type TextProps as RNTextProps,
   type TextStyle,
 } from "react-native";
-import { typography } from "@theme";
+import { typography } from "~theme";
 
 type Sizes = keyof typeof $sizeStyles;
 type Weights = keyof typeof typography.primary;

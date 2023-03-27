@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import {
   coffeeMachineApiSlice,
   coffeeSelectionSliceReducer,
-} from "@features/coffee-brewing/store";
+} from "~features/coffee-brewing/store";
 
 export const store = configureStore({
   reducer: {

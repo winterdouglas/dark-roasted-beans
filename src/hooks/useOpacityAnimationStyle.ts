@@ -6,7 +6,7 @@ import {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { timing } from "@theme";
+import { timing } from "~theme";
 
 export const useOpacityAnimationStyle = (
   initialValue: number,
