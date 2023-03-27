@@ -22,10 +22,6 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
     selectionType,
   );
 
-  // const navigation = useNavigation();
-  // const { selectAll } = useMemo(() => createCoffeeTypeSelectors(machineId), []);
-  // const types = useAppSelector(selectAll);
-
   return (
     <Screen title={t("title")} subtitle={t("subtitle")}>
       <List

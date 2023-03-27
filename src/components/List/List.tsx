@@ -7,6 +7,7 @@ import { Separator } from "~components/Separator";
 
 type BaseListProps<TItem> = Omit<FlashListProps<TItem>, "renderItem"> & {
   getItemProps?: (item: TItem, index: number) => ListItemProps;
+  renderItem?: FlashListProps<TItem>["renderItem"];
 };
 
 type DefaultListProps<TItem> = BaseListProps<TItem> & {
@@ -21,87 +22,65 @@ export type ListProps<TItem> =
   | DefaultListProps<TItem>
   | ContinuousListProps<TItem>;
 
-function DefaultList<TItem>({
+export function List<TItem>({
+  preset = "default",
   data,
+  renderItem,
   getItemProps,
   ...ListProps
-}: DefaultListProps<TItem>) {
-  const $listContainerStyles = {
-    ...$listContainerPresets.default,
-    ...(ListProps?.contentContainerStyle ?? {}),
-  };
-  const itemSize = ItemSizes.default;
-
-  return (
-    <FlashList<TItem>
-      contentContainerStyle={$listContainerStyles}
-      data={data}
-      ItemSeparatorComponent={Separator}
-      estimatedItemSize={itemSize}
-      renderItem={({ item, index }) => {
-        return (
-          <ListItem
-            height={itemSize}
-            round
-            PressableComponent={PressableScale}
-            {...((getItemProps && getItemProps(item, index)) || {})}
-          />
-        );
-      }}
-      {...ListProps}
-    />
-  );
-}
-
-function ContinousList<TItem>({
-  data,
-  getItemProps,
-  ...ListProps
-}: ContinuousListProps<TItem>) {
+}: ListProps<TItem>) {
   const $listContainerStyle: ContentStyle = {
-    ...$listContainerPresets.continuous,
+    ...$listContainerPresets[preset],
     ...(ListProps?.contentContainerStyle ?? {}),
   };
-  const itemSize = ItemSizes.continous;
+
+  const $ListProps = { ...$listProps[preset], ...ListProps };
+
+  const $ListItemProps: ListItemProps = $listItemProps[preset];
+
+  const itemSize = ItemSizes[preset];
 
   return (
     <FlashList<TItem>
       contentContainerStyle={$listContainerStyle}
       data={data}
       estimatedItemSize={itemSize}
-      renderItem={({ item, index }) => {
+      renderItem={(info) => {
+        if (renderItem) return renderItem(info);
         return (
           <ListItem
             height={itemSize}
-            bottomSeparator
-            shadowed={false}
             PressableComponent={PressableScale}
-            {...((getItemProps && getItemProps(item, index)) || {})}
+            {...$ListItemProps}
+            {...((getItemProps && getItemProps(info.item, info.index)) || {})}
           />
         );
       }}
-      {...ListProps}
+      {...$ListProps}
     />
-  );
-}
-
-export function List<TItem>({
-  preset = "default",
-  ...props
-}: ListProps<TItem>) {
-  return preset === "default" ? (
-    <DefaultList {...props} />
-  ) : (
-    <ContinousList {...props} />
   );
 }
 
 const ItemSizes = {
   default: 94,
-  continous: 90,
+
+  continuous: 90,
 } as const;
+
+const $listItemProps = {
+  default: { round: true, shadowed: true } as ListItemProps,
+
+  continuous: { bottomSeparator: true } as ListItemProps,
+};
+
+const $listProps = {
+  default: { ItemSeparatorComponent: Separator } as FlashListProps<any>,
+
+  continuous: {} as FlashListProps<any>,
+};
 
 const $listContainerPresets = {
   default: { paddingVertical: spacing.medium } as ContentStyle,
+
   continuous: { paddingVertical: spacing.medium } as ContentStyle,
 };

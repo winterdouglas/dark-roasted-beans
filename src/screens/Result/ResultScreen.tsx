@@ -19,6 +19,7 @@ export const ResultScreen = ({ navigation }: ResultScreenProps) => {
       <Lottie
         source={require("~assets/animations/coffee.json")}
         autoPlay
+        loop={false}
         style={$animationStyle}
       />
       <ListItem text={t("restart")} onPress={navigation.popToTop} />
