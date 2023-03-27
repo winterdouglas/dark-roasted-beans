@@ -45,15 +45,18 @@ export const { setSelection, clearSelection } = coffeeSelectionSlice.actions;
  * @param state The state
  * @returns The current selection
  */
-export const selectCoffeeSelection = (state: RootState) =>
-  state.coffeeSelection;
+const selectCoffeeSelection = (state: RootState) => state.coffeeSelection;
 
 /**
- * Selects the selected type id
+ * Selects the currently selected values
  */
-export const selectSelectedType = createSelector(
+export const selectCurrentSelection = createSelector(
   selectCoffeeSelection,
-  (selection) => Object.keys(selection.types)[0],
+  (selection) => ({
+    type: Object.keys(selection.types)[0],
+    size: Object.keys(selection.sizes)[0],
+    extras: selection.extras,
+  }),
 );
 
 /**
@@ -64,15 +67,5 @@ export const selectCoffeeSelectionByType = createSelector(
   (_state: RootState, type: SelectionType) => type,
   (selection, type) => selection[type],
 );
-
-// const hasKeys = (object: Object) => !!Object.keys(object).length;
-
-// export const selectNextSelection = createSelector(
-//   selectCoffeeSelection,
-//   (selection): SelectionType => {
-//     if (hasKeys(selection.types)) return "sizes";
-//     if (hasKeys(selection.))
-//   },
-// );
 
 export const { reducer: coffeeSelectionSliceReducer } = coffeeSelectionSlice;

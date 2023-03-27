@@ -124,6 +124,12 @@ export const createCoffeeTypeSelectors = (id: string) =>
       selectData(state, id)?.types ?? coffeeTypeAdapter.getInitialState(),
   );
 
+export const createCoffeeSizeSelectors = (id: string) =>
+  coffeeSizeAdapter.getSelectors(
+    (state: RootState) =>
+      selectData(state, id)?.sizes ?? coffeeSizeAdapter.getInitialState(),
+  );
+
 export const createCoffeeExtrasSelectors = (id: string) =>
   coffeeExtraAdapter.getSelectors(
     (state: RootState) =>
