@@ -20,7 +20,7 @@ import { PickerScreen } from "~screens/Picker";
 export type AppStackParamList = {
   Home: undefined;
   Overview: undefined;
-  Picker: { selectionType: "type" | "size" | "extras" };
+  Picker: { selectionType: "types" | "sizes" | "extras" };
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> =
@@ -34,14 +34,18 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 const AppStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="Picker"
       screenOptions={{
         headerShown: false,
         headerBackVisible: false,
         headerShadowVisible: false,
       }}>
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Picker" component={PickerScreen} />
+      <Stack.Screen
+        name="Picker"
+        component={PickerScreen}
+        initialParams={{ selectionType: "types" }}
+      />
       <Stack.Screen name="Overview" component={OverviewScreen} />
     </Stack.Navigator>
   );

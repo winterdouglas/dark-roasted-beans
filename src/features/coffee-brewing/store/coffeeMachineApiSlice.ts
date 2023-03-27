@@ -33,6 +33,8 @@ type NormalizedCoffeeMachineResponse = {
   extraOptions: EntityState<CoffeeExtraOption>;
 };
 
+// type CoffeeMachineResponseKeys = keyof NormalizedCoffeeMachineResponse;
+
 const getId = ({ _id }: WithCustomId) => _id;
 
 export const coffeeMachineApiSlice = createApi({
@@ -102,6 +104,14 @@ const selectData = createSelector(
   (result) => result.data,
 );
 
+// type SelectDataByTypeProps = { id: string; type: CoffeeMachineResponseKeys };
+
+// const selectDataByType = createSelector(
+//   (state: RootState, { id }: SelectDataByTypeProps) => selectData(state, id),
+//   (_state: RootState, { type }: SelectDataByTypeProps) => type,
+//   (result, type) => result[type].entities,
+// );
+
 export const createCoffeeMachineSelectors = (id: string) =>
   coffeeMachineAdapter.getSelectors(
     (state: RootState) =>
@@ -112,4 +122,17 @@ export const createCoffeeTypeSelectors = (id: string) =>
   coffeeTypeAdapter.getSelectors(
     (state: RootState) =>
       selectData(state, id)?.types ?? coffeeTypeAdapter.getInitialState(),
+  );
+
+export const createCoffeeExtrasSelectors = (id: string) =>
+  coffeeExtraAdapter.getSelectors(
+    (state: RootState) =>
+      selectData(state, id)?.extras ?? coffeeExtraAdapter.getInitialState(),
+  );
+
+export const createCoffeeExtraOptionsSelectors = (id: string) =>
+  coffeeExtraOptionsAdapter.getSelectors(
+    (state: RootState) =>
+      selectData(state, id)?.extraOptions ??
+      coffeeExtraOptionsAdapter.getInitialState(),
   );
