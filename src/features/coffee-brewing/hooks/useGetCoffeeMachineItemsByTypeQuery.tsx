@@ -15,6 +15,7 @@ export const useGetCoffeeMachineItemsByTypeQuery = (
   return useGetCoffeeMachineByIdQuery(machineId, {
     selectFromResult: ({ data }) => {
       if (!data) return { items: [] };
+
       if (selectionType === "types") {
         return { items: Object.values(data[selectionType].entities) };
       }

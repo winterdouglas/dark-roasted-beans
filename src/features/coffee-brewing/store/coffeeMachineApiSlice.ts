@@ -12,7 +12,6 @@ import type {
   CoffeeType,
   CoffeeSize,
   CoffeeExtra,
-  CoffeeExtraOption,
 } from "./entities";
 import { WithCustomId } from "./withCustomId";
 
@@ -23,17 +22,13 @@ const coffeeMachineAdapter = createEntityAdapter<CoffeeMachine>();
 const coffeeTypeAdapter = createEntityAdapter<CoffeeType>();
 const coffeeSizeAdapter = createEntityAdapter<CoffeeSize>();
 const coffeeExtraAdapter = createEntityAdapter<CoffeeExtra>();
-const coffeeExtraOptionsAdapter = createEntityAdapter<CoffeeExtraOption>();
 
 type NormalizedCoffeeMachineResponse = {
   machines: EntityState<CoffeeMachine>;
   types: EntityState<CoffeeType>;
   sizes: EntityState<CoffeeSize>;
   extras: EntityState<CoffeeExtra>;
-  extraOptions: EntityState<CoffeeExtraOption>;
 };
-
-// type CoffeeMachineResponseKeys = keyof NormalizedCoffeeMachineResponse;
 
 const getId = ({ _id }: WithCustomId) => _id;
 
@@ -47,6 +42,8 @@ export const coffeeMachineApiSlice = createApi({
     >({
       query: (id) => `coffee-machine/${id}`,
       transformResponse: (response: CoffeeMachineDto) => {
+        // Normalizing with EntityAdapter
+
         const machines = coffeeMachineAdapter.setAll(
           coffeeMachineAdapter.getInitialState(),
           [
@@ -71,15 +68,7 @@ export const coffeeMachineApiSlice = createApi({
 
         const extras = coffeeExtraAdapter.setAll(
           coffeeExtraAdapter.getInitialState(),
-          response.extras.map((extra) => ({
-            ...extra,
-            subselections: extra.subselections.map(getId),
-          })),
-        );
-
-        const extraOptions = coffeeExtraOptionsAdapter.setAll(
-          coffeeExtraOptionsAdapter.getInitialState(),
-          response.extras.flatMap((extra) => extra.subselections),
+          response.extras,
         );
 
         return {
@@ -87,7 +76,6 @@ export const coffeeMachineApiSlice = createApi({
           types,
           sizes,
           extras,
-          extraOptions,
         };
       },
     }),
@@ -103,14 +91,6 @@ const selectData = createSelector(
   (state: RootState, id: string) => createSelectCoffeeMachine(id)(state),
   (result) => result.data,
 );
-
-// type SelectDataByTypeProps = { id: string; type: CoffeeMachineResponseKeys };
-
-// const selectDataByType = createSelector(
-//   (state: RootState, { id }: SelectDataByTypeProps) => selectData(state, id),
-//   (_state: RootState, { type }: SelectDataByTypeProps) => type,
-//   (result, type) => result[type].entities,
-// );
 
 export const createCoffeeMachineSelectors = (id: string) =>
   coffeeMachineAdapter.getSelectors(
@@ -134,11 +114,4 @@ export const createCoffeeExtrasSelectors = (id: string) =>
   coffeeExtraAdapter.getSelectors(
     (state: RootState) =>
       selectData(state, id)?.extras ?? coffeeExtraAdapter.getInitialState(),
-  );
-
-export const createCoffeeExtraOptionsSelectors = (id: string) =>
-  coffeeExtraOptionsAdapter.getSelectors(
-    (state: RootState) =>
-      selectData(state, id)?.extraOptions ??
-      coffeeExtraOptionsAdapter.getInitialState(),
   );

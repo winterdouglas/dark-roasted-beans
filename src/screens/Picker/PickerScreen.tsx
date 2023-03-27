@@ -8,6 +8,7 @@ import { useAppDispatch } from "~hooks/useAppDispatch";
 import { useTranslation } from "react-i18next";
 import { Button } from "~components";
 import { useGetCoffeeMachineItemsByTypeQuery } from "~features/coffee-brewing/hooks/useGetCoffeeMachineItemsByTypeQuery";
+import { SelectionListItem } from "~features/coffee-brewing/components/SelectionListItem";
 
 type PickerScreenProps = AppStackScreenProps<"Picker"> & {};
 
@@ -26,25 +27,30 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
     <Screen title={t("title")} subtitle={t("subtitle")}>
       <List
         data={items}
-        getItemProps={(item) => ({
-          text: item.name,
-          disabled: selectionType === "extras",
-          onPress: () => {
-            dispatch(
-              setSelection({
-                type: selectionType,
-                selection: { [item._id]: [] },
-              }),
-            );
+        renderItem={({ item }) => {
+          return (
+            <SelectionListItem
+              subselections={item["subselections"]}
+              text={item.name}
+              disabled={selectionType === "extras"}
+              onPress={() => {
+                dispatch(
+                  setSelection({
+                    type: selectionType,
+                    selection: { [item._id]: [] },
+                  }),
+                );
 
-            if (selectionType === "extras") return;
+                if (selectionType === "extras") return;
 
-            const nextSelection =
-              selectionType === "types" ? "sizes" : "extras";
+                const nextSelection =
+                  selectionType === "types" ? "sizes" : "extras";
 
-            navigation.push("Picker", { selectionType: nextSelection });
-          },
-        })}
+                navigation.push("Picker", { selectionType: nextSelection });
+              }}
+            />
+          );
+        }}
       />
       {selectionType === "extras" && (
         <Button

@@ -88,6 +88,10 @@ export type ListItemProps = PressableProps & {
    */
   LeftComponent?: ReactElement;
   /**
+   * An optional footer ReactElement.
+   */
+  FooterComponent?: ReactElement;
+  /**
    * Custom pressable
    */
   PressableComponent?: ComponentType<PressableProps>;
@@ -110,6 +114,7 @@ export const ListItem = ({
   leftIcon,
   leftIconColor,
   RightComponent,
+  FooterComponent,
   rightIcon,
   rightIconColor,
   style,
@@ -142,14 +147,17 @@ export const ListItem = ({
   };
 
   const $pressableStyles: StyleProp<ViewStyle> = [
-    $pressableStyle,
     round && $roundStyle,
     shadowed && $pressableShadowStyles,
     {
-      minHeight: height,
       backgroundColor: secondary,
     },
     style,
+  ];
+
+  const $contentContainerStyles: StyleProp<ViewStyle> = [
+    $contentContainerStyle,
+    { minHeight: height },
   ];
 
   const Pressable = PressableComponent || PressableScale;
@@ -157,23 +165,26 @@ export const ListItem = ({
   return (
     <View style={$containerStyleOverride}>
       <Pressable {...pressableProps} style={$pressableStyles}>
-        <ListItemAction
-          size={height}
-          icon={leftIcon}
-          iconColor={leftIconColor || onSecondary}
-          Component={LeftComponent}
-        />
+        <View style={$contentContainerStyles}>
+          <ListItemAction
+            size={height}
+            icon={leftIcon}
+            iconColor={leftIconColor || onSecondary}
+            Component={LeftComponent}
+          />
 
-        <Text preset="list" text={text} style={$textStyles} {...textProps}>
-          {children}
-        </Text>
+          <Text preset="list" text={text} style={$textStyles} {...textProps}>
+            {children}
+          </Text>
 
-        <ListItemAction
-          size={height}
-          icon={rightIcon}
-          iconColor={rightIconColor || onSecondary}
-          Component={RightComponent}
-        />
+          <ListItemAction
+            size={height}
+            icon={rightIcon}
+            iconColor={rightIconColor || onSecondary}
+            Component={RightComponent}
+          />
+        </View>
+        {FooterComponent}
       </Pressable>
     </View>
   );
@@ -212,7 +223,7 @@ const $textStyle: TextStyle = {
   flexShrink: 1,
 };
 
-const $pressableStyle: ViewStyle = {
+const $contentContainerStyle: ViewStyle = {
   flexDirection: "row",
   alignItems: "flex-start",
   gap: spacing.large,
