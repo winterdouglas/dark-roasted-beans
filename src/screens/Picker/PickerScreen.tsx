@@ -10,6 +10,7 @@ import {
 } from "~features/coffee-brewing/store";
 import { Config } from "~config";
 import { useAppDispatch } from "~hooks/useAppDispatch";
+import { useTranslation } from "react-i18next";
 
 type PickerScreenProps = AppStackScreenProps<"Picker"> & {};
 
@@ -17,6 +18,7 @@ const machineId = Config.MACHINE_ID;
 
 export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
   const { selectionType } = route.params;
+  const { t } = useTranslation(selectionType);
   const dispatch = useAppDispatch();
   const selectedType = useAppSelector(selectSelectedType);
   const { items } = useGetCoffeeMachineByIdQuery(machineId, {
@@ -41,7 +43,7 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
   // const types = useAppSelector(selectAll);
 
   return (
-    <Screen title="Brew with Lex" subtitle="Select your style">
+    <Screen title={t("title")} subtitle={t("subtitle")}>
       <List
         data={items}
         getItemProps={(item) => ({
