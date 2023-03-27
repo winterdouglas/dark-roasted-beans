@@ -2,8 +2,8 @@ import { AppRegistry } from "react-native";
 import React from "react";
 import { Provider } from "react-redux";
 import { name as appName } from "./app.json";
-import App from "App";
-import { store } from "store";
+import App from "./src/App";
+import { store } from "./src/store";
 
 const AppBootstrapper = () => {
   return (

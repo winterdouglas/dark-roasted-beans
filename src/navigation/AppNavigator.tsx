@@ -6,10 +6,10 @@ import {
   type NativeStackScreenProps,
 } from "@react-navigation/native-stack";
 
-import { HomeScreen } from "screens/Home";
-import { OverviewScreen } from "screens/Overview";
-import { darkTheme, lightTheme } from "theme";
-import { PickerScreen } from "screens/Picker";
+import { darkTheme, lightTheme } from "@theme";
+import { HomeScreen } from "@screens/Home";
+import { OverviewScreen } from "@screens/Overview";
+import { PickerScreen } from "@screens/Picker";
 
 /**
  * This type allows TypeScript to know what routes are defined in the navigator.

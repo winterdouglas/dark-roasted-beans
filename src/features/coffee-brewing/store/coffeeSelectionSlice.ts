@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "store";
+import { RootState } from "@store";
 
 type CoffeeSelectionState = {
   /**
@@ -27,7 +27,6 @@ export const coffeeSelectionSlice = createSlice({
   initialState,
   reducers: {
     setType: (state, action: PayloadAction<string>) => {
-      // Here it uses Immer, so there's no need to copy
       state.type = action.payload;
     },
     setSize: (state, action: PayloadAction<string>) => {

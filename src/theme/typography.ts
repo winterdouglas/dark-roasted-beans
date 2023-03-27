@@ -1,12 +1,16 @@
 import { Platform } from "react-native";
 
 const fonts = {
+  /**
+   * iOS only font.
+   */
   avenirNext: {
-    // iOS only font.
     normal: "Avenir Next",
   },
+  /**
+   * Android only font.
+   */
   sansSerif: {
-    // Android only font.
     normal: "sans-serif",
   },
 };

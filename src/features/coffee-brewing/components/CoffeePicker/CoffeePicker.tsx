@@ -1,11 +1,11 @@
 import React, { useMemo } from "react";
-import { Config } from "config";
+import { Config } from "@config";
+import { useAppSelector } from "@hooks/useAppSelector";
+import { List } from "@components/List";
 import {
   createCoffeeTypeSelectors,
   useGetCoffeeMachineByIdQuery,
-} from "features/coffee-brewing/store/coffeeMachineApiSlice";
-import { useAppSelector } from "hooks/useAppSelector";
-import { List } from "components/List";
+} from "@features/coffee-brewing/store";
 
 export const CoffeePicker = () => {
   useGetCoffeeMachineByIdQuery(Config.MACHINE_ID);

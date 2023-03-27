@@ -4,8 +4,8 @@ import {
   EntityState,
 } from "@reduxjs/toolkit";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Config } from "config";
-import { RootState } from "store";
+import { Config } from "@config";
+import { RootState } from "@store";
 import type { CoffeeMachineDto } from "./apiTypes";
 import type {
   CoffeeMachine,

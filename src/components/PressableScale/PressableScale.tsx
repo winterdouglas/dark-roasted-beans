@@ -1,14 +1,11 @@
 import React from "react";
-import { Pressable, type PressableProps } from "react-native";
-import Animated from "react-native-reanimated";
-
-import { useScaleAnimationStyle } from "hooks/useScaleAnimationStyle";
+import { type PressableProps } from "react-native";
+import { useScaleAnimationStyle } from "@hooks/useScaleAnimationStyle";
+import { AnimatedPressable } from "@components/AnimatedPressable";
 
 export type PressableScaleProps = PressableProps & {
   activeScale?: number;
 };
-
-const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 export const PressableScale = ({
   activeScale = 0.98,

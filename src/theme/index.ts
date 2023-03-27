@@ -1,5 +1,4 @@
 export * from "./spacing";
-export * from "./typography";
+export * from "./theme";
 export * from "./timing";
-export * from "./darkTheme";
-export * from "./lightTheme";
+export * from "./typography";

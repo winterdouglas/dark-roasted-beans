@@ -1,9 +1,8 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Screen } from "@components";
-// import { List } from "components/List";
-import { ListItem } from "components/ListItem";
-import { CoffeePicker } from "features/coffee-brewing/components/CoffeePicker/CoffeePicker";
+import { Screen } from "@components/Screen";
+import { ListItem } from "@components/ListItem";
+import { CoffeePicker } from "@features/coffee-brewing/components";
 
 export const HomeScreen = () => {
   const navigation = useNavigation();

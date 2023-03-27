@@ -3,7 +3,7 @@ import { ColorValue, StyleProp, View, ViewStyle } from "react-native";
 import {
   PressableOpacity,
   PressableOpacityProps,
-} from "components/PressableOpacity";
+} from "@components/PressableOpacity";
 import { iconRegistry } from "./iconsRegistry";
 
 export type IconProps = {

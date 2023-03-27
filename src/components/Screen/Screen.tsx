@@ -9,6 +9,7 @@ import {
   StatusBar,
   TextStyle,
 } from "react-native";
+import { useTheme } from "@react-navigation/native";
 
 import { spacing } from "@theme";
 import {
@@ -16,8 +17,7 @@ import {
   useSafeAreaInsetsStyle,
 } from "@hooks/useSafeAreaInsetsStyle";
 import { HeaderProps, useHeader } from "@hooks/useHeader";
-import { Text } from "@components";
-import { useTheme } from "@react-navigation/native";
+import { Text } from "@components/Text";
 
 type BaseScreenProps = HeaderProps & {
   /**
