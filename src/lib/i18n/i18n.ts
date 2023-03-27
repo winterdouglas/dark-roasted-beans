@@ -9,6 +9,7 @@ export const resources = {
 } as const;
 
 i18n.use(initReactI18next).init({
+  compatibilityJSON: "v3",
   resources: resources,
   lng: "en",
   fallbackLng: "en",
