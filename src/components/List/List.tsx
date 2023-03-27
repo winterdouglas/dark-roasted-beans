@@ -38,7 +38,6 @@ function DefaultList<TItem>({
       data={data}
       ItemSeparatorComponent={Separator}
       estimatedItemSize={itemSize}
-      // ListEmptyComponent={EmptyState}
       renderItem={({ item, index }) => {
         return (
           <ListItem
@@ -70,7 +69,6 @@ function ContinousList<TItem>({
       contentContainerStyle={$listContainerStyle}
       data={data}
       estimatedItemSize={itemSize}
-      // ListEmptyComponent={EmptyState}
       renderItem={({ item, index }) => {
         return (
           <ListItem

@@ -11,10 +11,13 @@ import {
 } from "~features/coffee-brewing/store";
 import { useAppSelector } from "~hooks/useAppSelector";
 import { ListItem } from "~components/ListItem";
+import { AppStackScreenProps } from "~navigation";
 
 const MachineId = Config.MACHINE_ID;
 
-export const OverviewScreen = () => {
+type OverviewScreenProps = AppStackScreenProps<"Overview"> & {};
+
+export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
   const { selectById: selectCoffeeTypeById } = useMemo(
     () => createCoffeeTypeSelectors(MachineId),
     [],
@@ -51,7 +54,13 @@ export const OverviewScreen = () => {
           onPress: () => {},
         })}
       />
-      <ListItem round text={t("brew")} onPress={() => {}} />
+      <ListItem
+        round
+        text={t("brew")}
+        onPress={() => {
+          navigation.navigate("Result");
+        }}
+      />
     </Screen>
   );
 };

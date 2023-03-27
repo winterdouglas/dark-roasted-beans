@@ -8,8 +8,9 @@ import {
 
 import { darkTheme, lightTheme } from "~theme";
 import { HomeScreen } from "~screens/Home";
-import { OverviewScreen } from "~screens/Overview";
 import { PickerScreen } from "~screens/Picker";
+import { OverviewScreen } from "~screens/Overview";
+import { ResultScreen } from "~screens/Result";
 
 /**
  * This type allows TypeScript to know what routes are defined in the navigator.
@@ -21,6 +22,7 @@ export type AppStackParamList = {
   Home: undefined;
   Overview: undefined;
   Picker: { selectionType: "types" | "sizes" | "extras" };
+  Result: undefined;
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> =
@@ -47,6 +49,7 @@ const AppStack = () => {
         initialParams={{ selectionType: "types" }}
       />
       <Stack.Screen name="Overview" component={OverviewScreen} />
+      <Stack.Screen name="Result" component={ResultScreen} />
     </Stack.Navigator>
   );
 };

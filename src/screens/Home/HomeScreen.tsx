@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Screen } from "~components/Screen";
 import { ListItem } from "~components/ListItem";
-import { CoffeePicker } from "~features/coffee-brewing/components";
 
 export const HomeScreen = () => {
   const navigation = useNavigation();
@@ -15,7 +14,6 @@ export const HomeScreen = () => {
           return { text: item, leftIcon: "ChevronLeft" };
         }}
       /> */}
-      <CoffeePicker />
       <ListItem
         round
         text="Continue"

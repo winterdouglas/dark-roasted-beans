@@ -23,5 +23,10 @@
     "title": "Brew with Lex",
     "subtitle": "Overview",
     "brew": "Brew your coffee"
+  },
+  "result": {
+    "title": "Thanks!",
+    "subtitle": "Your coffee is being prepared",
+    "restart": "Start over"
   }
 }
