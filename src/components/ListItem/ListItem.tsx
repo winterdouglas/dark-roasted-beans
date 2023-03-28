@@ -7,11 +7,11 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import { useTheme } from "@react-navigation/native";
 import { spacing } from "~theme";
 import { Icon, Icons } from "~components/Icon";
 import { Text, TextProps } from "~components/Text";
 import { PressableScale } from "~components/PressableScale";
+import { useTheme } from "~hooks/useTheme";
 
 export type ListItemProps = PressableProps & {
   /**

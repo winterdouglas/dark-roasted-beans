@@ -7,16 +7,22 @@ import { Provider } from "react-redux";
 import { store } from "~store";
 import { AppNavigator } from "~navigation";
 import { LoadingIndicator } from "~components/LoadingIndicator";
+import { ErrorBoundary } from "~components/ErrorBoundary";
+import { ThemeProvider } from "~contexts/theme/ThemeProvider";
 
 const App = () => {
   return (
-    <Suspense fallback={<LoadingIndicator />}>
-      <Provider store={store}>
-        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-          <AppNavigator />
-        </SafeAreaProvider>
-      </Provider>
-    </Suspense>
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <ThemeProvider>
+        <ErrorBoundary>
+          <Suspense fallback={<LoadingIndicator />}>
+            <Provider store={store}>
+              <AppNavigator />
+            </Provider>
+          </Suspense>
+        </ErrorBoundary>
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 };
 

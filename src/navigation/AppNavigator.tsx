@@ -1,16 +1,15 @@
 import React, { ComponentProps } from "react";
-import { useColorScheme } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createNativeStackNavigator,
   type NativeStackScreenProps,
 } from "@react-navigation/native-stack";
 
-import { darkTheme, lightTheme } from "~theme";
 import { HomeScreen } from "~screens/Home";
 import { PickerScreen } from "~screens/Picker";
 import { OverviewScreen } from "~screens/Overview";
 import { ResultScreen } from "~screens/Result";
+import { useTheme } from "~hooks/useTheme";
 
 /**
  * This type allows TypeScript to know what routes are defined in the navigator.
@@ -59,8 +58,8 @@ const AppStack = () => {
 type AppNavigatorProps = Partial<ComponentProps<typeof NavigationContainer>>;
 
 export const AppNavigator = (props: AppNavigatorProps) => {
-  const colorScheme = useColorScheme();
-  const theme = colorScheme === "dark" ? darkTheme : lightTheme;
+  const theme = useTheme();
+
   return (
     <NavigationContainer theme={theme} {...props}>
       <AppStack />

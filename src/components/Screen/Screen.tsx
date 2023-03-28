@@ -9,8 +9,6 @@ import {
   StatusBar,
   TextStyle,
 } from "react-native";
-import { useTheme } from "@react-navigation/native";
-
 import { spacing } from "~theme";
 import {
   type ExtendedEdge,
@@ -18,6 +16,7 @@ import {
 } from "~hooks/useSafeAreaInsetsStyle";
 import { HeaderProps, useHeader } from "~hooks/useHeader";
 import { Text } from "~components/Text";
+import { useTheme } from "~hooks/useTheme";
 
 type BaseScreenProps = HeaderProps & {
   /**

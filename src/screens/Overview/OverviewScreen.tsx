@@ -16,6 +16,7 @@ import { CoffeeSelectionListItem } from "~features/coffee-brewing/components/Cof
 import { getId } from "~features/coffee-brewing/store/withCustomId";
 import { Link } from "~components/Link";
 import { ViewStyle } from "react-native/types";
+import { useTheme } from "~hooks/useTheme";
 
 const MachineId = Config.MACHINE_ID;
 
@@ -33,6 +34,7 @@ const findItemTypeByIndex = (index: number) => {
 };
 
 export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
+  const { colors } = useTheme();
   const dispatch = useAppDispatch();
   const { t } = useTranslation("overview");
 
@@ -59,11 +61,13 @@ export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
 
           return (
             <CoffeeSelectionListItem
+              shadowed={false}
               subselections={subselections}
               selectedValues={subselections.map(getId)}
               RightComponent={
                 <Link
                   containerStyle={$linkContainerStyle}
+                  style={{ color: colors.onSecondary }}
                   text={t("edit")}
                   onPress={() =>
                     navigation.navigate("Picker", {

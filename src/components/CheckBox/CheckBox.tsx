@@ -1,4 +1,3 @@
-import { useTheme } from "@react-navigation/native";
 import React, { ComponentType, useMemo } from "react";
 import {
   ColorValue,
@@ -15,6 +14,7 @@ import {
   PressableScale,
 } from "~components/PressableScale";
 import { Text, TextProps } from "~components/Text";
+import { useTheme } from "~hooks/useTheme";
 import { spacing } from "~theme/spacing";
 
 export type CheckBoxProps = Omit<PressableScaleProps, "style"> & {

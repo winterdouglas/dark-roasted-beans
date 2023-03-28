@@ -1,10 +1,10 @@
 import React, { ComponentType } from "react";
 import { FlatList, FlatListProps, StyleProp, ViewStyle } from "react-native";
-import { useTheme } from "@react-navigation/native";
 import { spacing } from "~theme";
 import { ListItem, type ListItemProps } from "~components/ListItem";
 import { Separator } from "~components/Separator";
 import { PressableScale } from "~components/PressableScale";
+import { useTheme } from "~hooks/useTheme";
 
 type BaseListProps<TItem> = Omit<FlatListProps<TItem>, "renderItem"> & {
   getItemProps?: (item: TItem, index: number) => ListItemProps;

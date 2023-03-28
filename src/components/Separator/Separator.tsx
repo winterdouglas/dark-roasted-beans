@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleProp, View, ViewProps, ViewStyle } from "react-native";
-import { useTheme } from "@react-navigation/native";
+import { useTheme } from "~hooks/useTheme";
 import { spacing } from "~theme";
 
 type Presets = keyof typeof $presets;

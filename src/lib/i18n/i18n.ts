@@ -20,3 +20,5 @@ i18n.use(initReactI18next).init({
 });
 
 export type Translations = typeof en;
+
+export default i18n;

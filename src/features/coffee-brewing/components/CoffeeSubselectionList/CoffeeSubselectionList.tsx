@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleProp, View, ViewStyle } from "react-native";
-import { useTheme } from "@react-navigation/native";
 import { Separator } from "~components";
 import { CheckBox } from "~components/CheckBox";
 import { CoffeeExtraOption } from "~features/coffee-brewing/store";
+import { useTheme } from "~hooks/useTheme";
 import { spacing } from "~theme";
 
 type CoffeeSubselectionListProps = {
