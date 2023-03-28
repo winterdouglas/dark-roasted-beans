@@ -5,6 +5,7 @@ import {
   type TextProps as RNTextProps,
   type TextStyle,
 } from "react-native";
+import { useTheme } from "~hooks/useTheme";
 import { typography } from "~theme";
 
 type Sizes = keyof typeof $sizeStyles;
@@ -48,12 +49,14 @@ export const Text = ({
   style: $styleOverride,
   ...rest
 }: TextProps) => {
+  const { colors } = useTheme();
   const content = text || children;
 
   const $styles = [
     $presets[preset],
     weight && $fontWeightStyles[weight],
     size && $sizeStyles[size],
+    { color: colors.text },
     $styleOverride,
   ];
 
