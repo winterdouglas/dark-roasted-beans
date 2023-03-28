@@ -60,7 +60,7 @@ export const Icon = (props: IconProps) => {
       {...WrapperProps}>
       <IconComponent
         style={$imageStyleOverride}
-        fill={color}
+        color={color}
         width={size}
         height={size}
       />

@@ -2,13 +2,18 @@ import React from "react";
 import { Screen } from "~components/Screen";
 import { List } from "~components/List";
 import { AppStackScreenProps } from "~navigation";
-import { setSelection } from "~features/coffee-brewing/store";
+import {
+  selectCurrentCoffeeSelectionByType,
+  selectCurrentCoffeeSelection,
+  setSelection,
+} from "~features/coffee-brewing/store";
 import { Config } from "~config";
 import { useAppDispatch } from "~hooks/useAppDispatch";
 import { useTranslation } from "react-i18next";
 import { Button } from "~components";
 import { useGetCoffeeMachineItemsByTypeQuery } from "~features/coffee-brewing/hooks/useGetCoffeeMachineItemsByTypeQuery";
-import { SelectionListItem } from "~features/coffee-brewing/components/SelectionListItem";
+import { CoffeeSelectionListItem } from "~features/coffee-brewing/components/CoffeeSelectionListItem";
+import { useAppSelector } from "~hooks/useAppSelector";
 
 type PickerScreenProps = AppStackScreenProps<"Picker"> & {};
 
@@ -18,6 +23,9 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
   const { selectionType } = route.params;
   const { t } = useTranslation(selectionType);
   const dispatch = useAppDispatch();
+  const selection = useAppSelector((state) =>
+    selectCurrentCoffeeSelectionByType(state, selectionType),
+  );
   const { items } = useGetCoffeeMachineItemsByTypeQuery(
     machineId,
     selectionType,
@@ -29,8 +37,17 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
         data={items}
         renderItem={({ item }) => {
           return (
-            <SelectionListItem
+            <CoffeeSelectionListItem
               subselections={item["subselections"]}
+              selectedValues={selection[item._id]}
+              onSelectedValuesChanged={(values) => {
+                dispatch(
+                  setSelection({
+                    type: selectionType,
+                    selection: { [item._id]: values },
+                  }),
+                );
+              }}
               text={item.name}
               disabled={selectionType === "extras"}
               onPress={() => {

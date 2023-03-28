@@ -1,5 +1,7 @@
 {
-  "common": {},
+  "common": {
+    "loading": "Loading..."
+  },
   "scan": {
     "title": "Dark Roasted Beans",
     "subtitle": "Tap the machine to start",

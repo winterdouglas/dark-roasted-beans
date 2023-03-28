@@ -50,7 +50,7 @@ const selectCoffeeSelection = (state: RootState) => state.coffeeSelection;
 /**
  * Selects the currently selected values
  */
-export const selectCurrentSelection = createSelector(
+export const selectCurrentCoffeeSelection = createSelector(
   selectCoffeeSelection,
   (selection) => ({
     type: Object.keys(selection.types)[0],
@@ -62,7 +62,7 @@ export const selectCurrentSelection = createSelector(
 /**
  * Selects the coffee selection by selection type (being types, sizes or extras)
  */
-export const selectCoffeeSelectionByType = createSelector(
+export const selectCurrentCoffeeSelectionByType = createSelector(
   selectCoffeeSelection,
   (_state: RootState, type: SelectionType) => type,
   (selection, type) => selection[type],

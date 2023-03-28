@@ -1,6 +1,6 @@
 import { useAppSelector } from "~hooks/useAppSelector";
 import {
-  selectCurrentSelection,
+  selectCurrentCoffeeSelection,
   useGetCoffeeMachineByIdQuery,
 } from "~features/coffee-brewing/store";
 
@@ -10,7 +10,7 @@ export const useGetCoffeeMachineItemsByTypeQuery = (
 ) => {
   // This is the selected type in the store,
   // Used to filter related options
-  const { type } = useAppSelector(selectCurrentSelection);
+  const { type } = useAppSelector(selectCurrentCoffeeSelection);
 
   return useGetCoffeeMachineByIdQuery(machineId, {
     selectFromResult: ({ data }) => {

@@ -8,7 +8,7 @@ export type PressableOpacityProps = PressableProps & {
 };
 
 export const PressableOpacity = ({
-  activeOpacity = 0.8,
+  activeOpacity = 0.2,
   ...props
 }: PressableOpacityProps) => {
   const [animatedStyle, animate] = useOpacityAnimationStyle(1);

@@ -4,20 +4,25 @@ import { Config } from "~config";
 import { List } from "~components/List";
 import { Screen } from "~components/Screen";
 import {
+  clearSelection,
   createCoffeeExtrasSelectors,
   createCoffeeSizeSelectors,
   createCoffeeTypeSelectors,
-  selectCurrentSelection,
+  selectCurrentCoffeeSelection,
 } from "~features/coffee-brewing/store";
 import { useAppSelector } from "~hooks/useAppSelector";
 import { AppStackScreenProps } from "~navigation";
 import { Button } from "~components/Button";
+import { useAppDispatch } from "~hooks/useAppDispatch";
 
 const MachineId = Config.MACHINE_ID;
 
 type OverviewScreenProps = AppStackScreenProps<"Overview"> & {};
 
 export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
+  const dispatch = useAppDispatch();
+  const { t } = useTranslation("overview");
+
   const { selectById: selectCoffeeTypeById } = useMemo(
     () => createCoffeeTypeSelectors(MachineId),
     [],
@@ -30,7 +35,7 @@ export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
     () => createCoffeeExtrasSelectors(MachineId),
     [],
   );
-  const { type, size, extras } = useAppSelector(selectCurrentSelection);
+  const { type, size, extras } = useAppSelector(selectCurrentCoffeeSelection);
 
   const selectedType = useAppSelector((state) =>
     selectCoffeeTypeById(state, type),
@@ -42,8 +47,6 @@ export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
 
   const items = [selectedType, selectedSize];
 
-  const { t } = useTranslation("overview");
-
   return (
     <Screen title={t("title")} subtitle={t("subtitle")}>
       <List
@@ -54,7 +57,13 @@ export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
           disabled: true,
         })}
       />
-      <Button text={t("brew")} onPress={() => navigation.navigate("Result")} />
+      <Button
+        text={t("brew")}
+        onPress={() => {
+          dispatch(clearSelection);
+          navigation.navigate("Result");
+        }}
+      />
     </Screen>
   );
 };
