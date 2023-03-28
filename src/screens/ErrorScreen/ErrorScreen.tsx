@@ -19,7 +19,11 @@ export interface ErrorScreenProps {
   onReset(): void;
 }
 
-export function ErrorScreen({ error, errorInfo, onReset }: ErrorScreenProps) {
+export const ErrorScreen = ({
+  error,
+  errorInfo,
+  onReset,
+}: ErrorScreenProps) => {
   const { colors } = useTheme();
   const { t } = useTranslation("error");
   const $safeAreaStyle = useSafeAreaInsetsStyle(["top", "bottom"]);
@@ -58,7 +62,7 @@ export function ErrorScreen({ error, errorInfo, onReset }: ErrorScreenProps) {
       <Button style={$resetButton} text={t("reset")} onPress={onReset} />
     </View>
   );
-}
+};
 
 const $containerStyle: ViewStyle = {
   flex: 1,

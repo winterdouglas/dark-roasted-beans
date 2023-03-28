@@ -68,24 +68,30 @@ const ScreenWithoutScrolling = ({
   subtitle,
   style,
   contentHorizontalPadding = true,
-  contentContainerStyle,
+  contentContainerStyle: $contentContainerStyleOverride,
   children,
 }: ScreenProps) => {
   const { colors } = useTheme();
 
-  const $subtitleStyle: StyleProp<TextStyle> = [{ color: colors.text }];
+  const $horizontalPaddingStyle: StyleProp<ViewStyle> = [
+    contentHorizontalPadding && { paddingHorizontal: spacing.medium },
+  ];
+
+  const $subtitleStyle: StyleProp<TextStyle> = [
+    $horizontalPaddingStyle,
+    { color: colors.text },
+  ];
+
+  const $contentContainerStyles: StyleProp<ViewStyle> = [
+    $horizontalPaddingStyle,
+    $fixedContentContainerStyle,
+    $contentContainerStyleOverride,
+  ];
 
   return (
     <View style={[$outerStyle, style]}>
-      <View
-        style={[
-          $fixedContentContainerStyle,
-          contentHorizontalPadding && { paddingHorizontal: spacing.medium },
-          contentContainerStyle,
-        ]}>
-        <Text preset="subheading" style={$subtitleStyle} text={subtitle} />
-        {children}
-      </View>
+      <Text preset="subheading" text={subtitle} style={[$subtitleStyle]} />
+      <View style={$contentContainerStyles}>{children}</View>
     </View>
   );
 };

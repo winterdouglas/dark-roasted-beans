@@ -23,13 +23,13 @@ export type ListProps<TItem> =
   | DefaultListProps<TItem>
   | ContinuousListProps<TItem>;
 
-export function List<TItem>({
+export const List = <TItem extends unknown>({
   preset = "default",
   data,
   renderItem,
   getItemProps,
   ...ListProps
-}: ListProps<TItem>) {
+}: ListProps<TItem>) => {
   const { colors } = useTheme();
 
   const $themeContainerStyles = {
@@ -37,7 +37,7 @@ export function List<TItem>({
     continuous: { backgroundColor: colors.secondary } as StyleProp<ViewStyle>,
   };
 
-  const $listContainerStyle: StyleProp<ViewStyle> = [
+  const $listContainerStyles: StyleProp<ViewStyle> = [
     $listContainerPresets[preset],
     $themeContainerStyles[preset],
     ListProps?.contentContainerStyle,
@@ -51,7 +51,6 @@ export function List<TItem>({
 
   return (
     <FlatList<TItem>
-      contentContainerStyle={$listContainerStyle}
       data={data}
       renderItem={(info) => {
         if (!info?.item) return null;
@@ -67,9 +66,10 @@ export function List<TItem>({
         );
       }}
       {...$ListProps}
+      contentContainerStyle={$listContainerStyles}
     />
   );
-}
+};
 
 const ListLineSeparator = () => {
   const { colors } = useTheme();
@@ -99,10 +99,9 @@ const $listProps = {
 };
 
 const $listContainerPresets = {
-  default: { marginVertical: spacing.medium } as ViewStyle,
+  default: {} as ViewStyle,
 
   continuous: {
-    marginVertical: spacing.medium,
     borderRadius: spacing.extraSmall,
     overflow: "hidden",
   } as ViewStyle,

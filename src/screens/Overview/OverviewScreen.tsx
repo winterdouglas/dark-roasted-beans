@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { ViewStyle } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Config } from "~config";
 import { List } from "~components/List";
@@ -15,7 +16,6 @@ import { useAppDispatch } from "~hooks/useAppDispatch";
 import { CoffeeSelectionListItem } from "~features/coffee-brewing/components/CoffeeSelectionListItem";
 import { getId } from "~features/coffee-brewing/store/withCustomId";
 import { Link } from "~components/Link";
-import { ViewStyle } from "react-native/types";
 import { useTheme } from "~hooks/useTheme";
 
 const MachineId = Config.MACHINE_ID;
@@ -54,6 +54,7 @@ export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
       <List
         data={items}
         preset="continuous"
+        style={$listStyle}
         renderItem={({ item, index }) => {
           // TODO: Convert this dot notation to instead use a TS type guard
           // eslint-disable-next-line dot-notation
@@ -96,4 +97,8 @@ export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
 
 const $linkContainerStyle: ViewStyle = {
   alignSelf: "center",
+};
+
+const $listStyle: ViewStyle = {
+  marginVertical: 16,
 };

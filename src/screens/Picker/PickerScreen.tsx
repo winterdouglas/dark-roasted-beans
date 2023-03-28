@@ -1,4 +1,6 @@
 import React from "react";
+import { ViewStyle } from "react-native";
+import { useTranslation } from "react-i18next";
 import { Screen } from "~components/Screen";
 import { List } from "~components/List";
 import { AppStackScreenProps } from "~navigation";
@@ -9,7 +11,6 @@ import {
 } from "~features/coffee-brewing/store";
 import { Config } from "~config";
 import { useAppDispatch } from "~hooks/useAppDispatch";
-import { useTranslation } from "react-i18next";
 import { Button } from "~components";
 import { useGetCoffeeMachineItemsByTypeQuery } from "~features/coffee-brewing/hooks/useGetCoffeeMachineItemsByTypeQuery";
 import { CoffeeSelectionListItem } from "~features/coffee-brewing/components/CoffeeSelectionListItem";
@@ -35,6 +36,7 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
     <Screen title={t("title")} subtitle={t("subtitle")}>
       <List
         data={items}
+        style={$listStyle}
         renderItem={({ item }) => {
           return (
             <CoffeeSelectionListItem
@@ -79,4 +81,8 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
       )}
     </Screen>
   );
+};
+
+const $listStyle: ViewStyle = {
+  marginVertical: 16,
 };

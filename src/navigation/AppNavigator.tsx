@@ -43,7 +43,7 @@ const AppStack = () => {
       }}>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen
-        // This allows navigating back to this screen
+        // This allows navigating back to this screen by type
         getId={({ params }) => params.selectionType}
         name="Picker"
         component={PickerScreen}
