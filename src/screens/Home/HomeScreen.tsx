@@ -1,11 +1,11 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 import { Screen } from "~components/Screen";
 import { ListItem } from "~components/ListItem";
+import { AppStackScreenProps } from "~navigation";
 
-export const HomeScreen = () => {
-  const navigation = useNavigation();
+type HomeScreenProps = AppStackScreenProps<"Home"> & {};
 
+export const HomeScreen = ({ navigation }: HomeScreenProps) => {
   return (
     <Screen title="Brew with Lex" subtitle="Select your style">
       {/* <List
