@@ -17,6 +17,7 @@ import { CoffeeSelectionListItem } from "~features/coffee-brewing/components/Cof
 import { getId } from "~features/coffee-brewing/store/withCustomId";
 import { Link } from "~components/Link";
 import { useTheme } from "~hooks/useTheme";
+import { spacing } from "~theme";
 
 const MachineId = Config.MACHINE_ID;
 
@@ -100,5 +101,5 @@ const $linkContainerStyle: ViewStyle = {
 };
 
 const $listStyle: ViewStyle = {
-  marginVertical: 16,
+  marginBottom: spacing.medium,
 };

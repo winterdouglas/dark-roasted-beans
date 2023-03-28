@@ -37,6 +37,11 @@ type BaseScreenProps = HeaderProps & {
    */
   contentHorizontalPadding?: boolean;
   /**
+   * Determines whether the screen content receives automatic vertical padding
+   * Default: True
+   */
+  contentVerticalPadding?: boolean;
+  /**
    * Style for the inner content container useful for padding & margin.
    */
   contentContainerStyle?: StyleProp<ViewStyle>;
@@ -68,6 +73,7 @@ const ScreenWithoutScrolling = ({
   subtitle,
   style,
   contentHorizontalPadding = true,
+  contentVerticalPadding = true,
   contentContainerStyle: $contentContainerStyleOverride,
   children,
 }: ScreenProps) => {
@@ -85,6 +91,7 @@ const ScreenWithoutScrolling = ({
   const $contentContainerStyles: StyleProp<ViewStyle> = [
     $horizontalPaddingStyle,
     $fixedContentContainerStyle,
+    contentVerticalPadding && { paddingVertical: spacing.medium },
     $contentContainerStyleOverride,
   ];
 

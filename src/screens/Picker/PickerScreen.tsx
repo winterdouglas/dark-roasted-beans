@@ -15,6 +15,7 @@ import { Button } from "~components";
 import { useGetCoffeeMachineItemsByTypeQuery } from "~features/coffee-brewing/hooks/useGetCoffeeMachineItemsByTypeQuery";
 import { CoffeeSelectionListItem } from "~features/coffee-brewing/components/CoffeeSelectionListItem";
 import { useAppSelector } from "~hooks/useAppSelector";
+import { spacing } from "~theme";
 
 type PickerScreenProps = AppStackScreenProps<"Picker"> & {};
 
@@ -84,5 +85,5 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
 };
 
 const $listStyle: ViewStyle = {
-  marginVertical: 16,
+  marginBottom: spacing.medium,
 };
