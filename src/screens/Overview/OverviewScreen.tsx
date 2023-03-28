@@ -14,6 +14,7 @@ import { useAppSelector } from "~hooks/useAppSelector";
 import { AppStackScreenProps } from "~navigation";
 import { Button } from "~components/Button";
 import { useAppDispatch } from "~hooks/useAppDispatch";
+import { CoffeeSelectionListItem } from "~features/coffee-brewing/components/CoffeeSelectionListItem";
 
 const MachineId = Config.MACHINE_ID;
 
@@ -52,16 +53,21 @@ export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
       <List
         data={items}
         preset="continuous"
-        getItemProps={(item) => ({
-          text: item.name,
-          disabled: true,
-          shadowed: false,
-        })}
+        renderItem={({ item }) => {
+          return (
+            <CoffeeSelectionListItem
+              // eslint-disable-next-line dot-notation
+              subselections={item["subselections"]}
+              text={item.name}
+              disabled
+            />
+          );
+        }}
       />
       <Button
         text={t("brew")}
         onPress={() => {
-          dispatch(clearSelection);
+          dispatch(clearSelection());
           navigation.navigate("Result");
         }}
       />

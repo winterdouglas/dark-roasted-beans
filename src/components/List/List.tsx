@@ -54,7 +54,9 @@ export function List<TItem>({
       contentContainerStyle={$listContainerStyle}
       data={data}
       renderItem={(info) => {
+        if (!info?.item) return null;
         if (renderItem) return renderItem(info);
+
         return (
           <ListItem
             height={itemSize}

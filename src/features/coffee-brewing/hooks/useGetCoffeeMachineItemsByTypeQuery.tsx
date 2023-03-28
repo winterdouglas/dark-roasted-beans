@@ -20,7 +20,7 @@ export const useGetCoffeeMachineItemsByTypeQuery = (
         return { items: Object.values(data[selectionType].entities) };
       }
 
-      const itemsOfType = data.types.entities[type][selectionType].map(
+      const itemsOfType = data.types.entities[type]?.[selectionType].map(
         (sizeOrExtra) => ({ ...data[selectionType].entities[sizeOrExtra] }),
       );
 
