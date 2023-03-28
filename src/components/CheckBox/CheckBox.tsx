@@ -11,13 +11,13 @@ import {
 } from "react-native";
 import { Icon } from "~components/Icon";
 import {
-  PressableOpacity,
-  PressableOpacityProps,
-} from "~components/PressableOpacity";
+  PressableScaleProps,
+  PressableScale,
+} from "~components/PressableScale";
 import { Text, TextProps } from "~components/Text";
 import { spacing } from "~theme/spacing";
 
-export type CheckBoxProps = Omit<PressableOpacityProps, "style"> & {
+export type CheckBoxProps = Omit<PressableScaleProps, "style"> & {
   /**
    * The value of the field. If true the component will be turned on.
    */
@@ -88,8 +88,8 @@ export const CheckBox = (props: CheckBoxProps) => {
     },
   ];
 
-  const Wrapper = useMemo<ComponentType<PressableOpacityProps>>(
-    () => (disabled ? View : PressableOpacity),
+  const Wrapper = useMemo<ComponentType<PressableScaleProps>>(
+    () => (disabled ? View : PressableScale),
     [disabled],
   );
 
