@@ -38,6 +38,7 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
         renderItem={({ item }) => {
           return (
             <CoffeeSelectionListItem
+              // TODO: Convert this dot notation to instead use a TS type guard
               // eslint-disable-next-line dot-notation
               subselections={item["subselections"]}
               selectedValues={selection[item._id]}

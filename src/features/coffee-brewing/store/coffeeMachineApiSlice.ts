@@ -13,10 +13,10 @@ import type {
   CoffeeSize,
   CoffeeExtra,
 } from "./entities";
-import { WithCustomId } from "./withCustomId";
+import { getId, WithCustomId } from "./withCustomId";
 
 const createEntityAdapter = <TEntityType extends WithCustomId>() =>
-  RTKCreateEntityAdapter<TEntityType>({ selectId: (c) => c._id });
+  RTKCreateEntityAdapter<TEntityType>({ selectId: getId });
 
 const coffeeMachineAdapter = createEntityAdapter<CoffeeMachine>();
 const coffeeTypeAdapter = createEntityAdapter<CoffeeType>();
@@ -30,8 +30,6 @@ type NormalizedCoffeeMachineResponse = {
   extras: EntityState<CoffeeExtra>;
 };
 
-const getId = ({ _id }: WithCustomId) => _id;
-
 export const coffeeMachineApiSlice = createApi({
   reducerPath: "coffeeMachineApi",
   baseQuery: fetchBaseQuery({ baseUrl: Config.API_URL }),
@@ -42,7 +40,7 @@ export const coffeeMachineApiSlice = createApi({
     >({
       query: (id) => `coffee-machine/${id}`,
       transformResponse: (response: CoffeeMachineDto) => {
-        // Normalizing with EntityAdapter
+        // Normalizing response with EntityAdapter
 
         const machines = coffeeMachineAdapter.setAll(
           coffeeMachineAdapter.getInitialState(),
@@ -114,4 +112,39 @@ export const createCoffeeExtrasSelectors = (id: string) =>
   coffeeExtraAdapter.getSelectors(
     (state: RootState) =>
       selectData(state, id)?.extras ?? coffeeExtraAdapter.getInitialState(),
+  );
+
+export const createOverviewSelector = ({
+  id,
+  type,
+  size,
+  extras = {},
+}: {
+  id: string;
+  type: string;
+  size: string;
+  extras: Record<string, string[]>;
+}) =>
+  createSelector(
+    (state: RootState) => selectData(state, id),
+    (data): (CoffeeType | CoffeeSize | CoffeeExtra)[] => {
+      // We're passing in the straight type from the selection as an argument,
+      // therefore not adding a dependency between slices
+      const foundType = data?.types.entities[type];
+      const foundSize = data?.sizes.entities[size];
+      const foundExtras = Object.keys(extras)
+        .map((extraId) => {
+          const subselections = extras[extraId];
+          const extra = data?.extras.entities[extraId];
+          return {
+            ...extra,
+            subselections: extra.subselections.filter((f) =>
+              subselections.includes(f._id),
+            ),
+          };
+        })
+        .filter((e) => !!e.subselections.length);
+
+      return [foundType, foundSize, ...foundExtras];
+    },
   );

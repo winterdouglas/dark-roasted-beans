@@ -5,9 +5,7 @@ import { List } from "~components/List";
 import { Screen } from "~components/Screen";
 import {
   clearSelection,
-  createCoffeeExtrasSelectors,
-  createCoffeeSizeSelectors,
-  createCoffeeTypeSelectors,
+  createOverviewSelector,
   selectCurrentCoffeeSelection,
 } from "~features/coffee-brewing/store";
 import { useAppSelector } from "~hooks/useAppSelector";
@@ -15,6 +13,7 @@ import { AppStackScreenProps } from "~navigation";
 import { Button } from "~components/Button";
 import { useAppDispatch } from "~hooks/useAppDispatch";
 import { CoffeeSelectionListItem } from "~features/coffee-brewing/components/CoffeeSelectionListItem";
+import { getId } from "~features/coffee-brewing/store/withCustomId";
 
 const MachineId = Config.MACHINE_ID;
 
@@ -24,29 +23,16 @@ export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation("overview");
 
-  const { selectById: selectCoffeeTypeById } = useMemo(
-    () => createCoffeeTypeSelectors(MachineId),
-    [],
+  const currentSelection = useAppSelector(selectCurrentCoffeeSelection);
+  const overviewSelector = useMemo(
+    () =>
+      createOverviewSelector({
+        id: MachineId,
+        ...currentSelection,
+      }),
+    [currentSelection],
   );
-  const { selectById: selectCoffeeSizeById } = useMemo(
-    () => createCoffeeSizeSelectors(MachineId),
-    [],
-  );
-  const { selectById: selectCoffeeExtrasById } = useMemo(
-    () => createCoffeeExtrasSelectors(MachineId),
-    [],
-  );
-  const { type, size, extras } = useAppSelector(selectCurrentCoffeeSelection);
-
-  const selectedType = useAppSelector((state) =>
-    selectCoffeeTypeById(state, type),
-  );
-
-  const selectedSize = useAppSelector((state) =>
-    selectCoffeeSizeById(state, size),
-  );
-
-  const items = [selectedType, selectedSize];
+  const items = useAppSelector(overviewSelector);
 
   return (
     <Screen title={t("title")} subtitle={t("subtitle")}>
@@ -54,10 +40,14 @@ export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
         data={items}
         preset="continuous"
         renderItem={({ item }) => {
+          // TODO: Convert this dot notation to instead use a TS type guard
+          // eslint-disable-next-line dot-notation
+          const subselections = item["subselections"] || [];
+
           return (
             <CoffeeSelectionListItem
-              // eslint-disable-next-line dot-notation
-              subselections={item["subselections"]}
+              subselections={subselections}
+              selectedValues={subselections.map(getId)}
               text={item.name}
               disabled
             />
