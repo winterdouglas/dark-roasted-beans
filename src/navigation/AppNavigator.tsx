@@ -5,7 +5,6 @@ import {
   type NativeStackScreenProps,
 } from "@react-navigation/native-stack";
 
-import { HomeScreen } from "~screens/Home";
 import { PickerScreen } from "~screens/Picker";
 import { OverviewScreen } from "~screens/Overview";
 import { ResultScreen } from "~screens/Result";
@@ -18,7 +17,6 @@ import { useTheme } from "~hooks/useTheme";
  * @see https://reactnavigation.org/docs/typescript/#organizing-types
  */
 export type AppStackParamList = {
-  Home: undefined;
   Overview: undefined;
   Picker: { selectionType: "types" | "sizes" | "extras" };
   Result: undefined;
@@ -41,7 +39,6 @@ const AppStack = () => {
         headerBackVisible: false,
         headerShadowVisible: false,
       }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen
         // This allows navigating back to this screen by type
         getId={({ params }) => params.selectionType}
