@@ -13,7 +13,7 @@ export enum ErrorType {
 
 export const reportCrash = (error: any, type: ErrorType = ErrorType.FATAL) => {
   if (__DEV__) {
-    const message = error.message || i18n.t("unknown");
+    const message = error.message || i18n.t("error:unknown");
     console.error(error);
     console.log(message, type);
   } else {

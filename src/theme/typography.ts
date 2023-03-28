@@ -22,7 +22,6 @@ export const typography = {
   primary: Platform.select({
     ios: fonts.avenirNext,
     // TODO: Check what to do with Android
-    android: fonts.avenirNext,
-    default: fonts.sansSerif,
+    android: fonts.sansSerif,
   }),
 };
