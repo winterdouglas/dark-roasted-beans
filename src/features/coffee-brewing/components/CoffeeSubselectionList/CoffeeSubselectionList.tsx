@@ -10,12 +10,14 @@ type CoffeeSubselectionListProps = {
   subselections: CoffeeExtraOption[];
   selectedValues?: string[];
   onSelectedValuesChanged?: (values: string[]) => void;
+  disabled?: boolean;
 };
 
 export const CoffeeSubselectionList = ({
   subselections,
   selectedValues = [],
   onSelectedValuesChanged,
+  disabled,
 }: CoffeeSubselectionListProps) => {
   const { colors } = useTheme();
 
@@ -32,6 +34,7 @@ export const CoffeeSubselectionList = ({
             // This can't be a FlatList because it's nested, so mapping it instead
             <CheckBox
               key={index}
+              disabled={disabled}
               value={selectedValues.includes(item._id)}
               label={item.name}
               onValueChange={(value) => {

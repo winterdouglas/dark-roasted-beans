@@ -50,6 +50,7 @@ export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
               selectedValues={subselections.map(getId)}
               text={item.name}
               disabled
+              subselectionDisabled
             />
           );
         }}
