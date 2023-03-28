@@ -5,14 +5,20 @@ import Lottie from "lottie-react-native";
 import { Screen } from "~components/Screen";
 import { AppStackScreenProps } from "~navigation/AppNavigator";
 import { Button } from "~components/Button";
+import { useAndroidBackButton } from "~hooks/useAndroidBackButton";
 
 type ResultScreenProps = AppStackScreenProps<"Result"> & {};
 
 export const ResultScreen = ({ navigation }: ResultScreenProps) => {
   const { t } = useTranslation("result");
 
+  const goBackToRoot = () => navigation.popToTop();
+
+  useAndroidBackButton(goBackToRoot);
+
   return (
     <Screen
+      onLeftIconPress={goBackToRoot}
       title={t("title")}
       subtitle={t("subtitle")}
       contentContainerStyle={$screenContainerStyle}>
@@ -22,7 +28,7 @@ export const ResultScreen = ({ navigation }: ResultScreenProps) => {
         loop={false}
         style={$animationStyle}
       />
-      <Button text={t("restart")} onPress={navigation.popToTop} />
+      <Button text={t("restart")} onPress={goBackToRoot} />
     </Screen>
   );
 };
