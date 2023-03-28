@@ -28,11 +28,30 @@ declare module "@react-navigation/native" {
        * The color of Tab Navigator badge.
        */
       notification: string;
-
+      /**
+       * A color that contrasts with primary
+       */
       onPrimary: string;
+      /**
+       * Secondary color
+       */
       secondary: string;
+      /**
+       * A color that contrasts with the secondary
+       */
       onSecondary: string;
+      /**
+       * Default color for shadows
+       */
       shadow: string;
+      /**
+       * A tertiary color variation
+       */
+      tertiary: string;
+      /**
+       * A color that contrast with the tertiary
+       */
+      onTertiary: string;
     };
   };
 

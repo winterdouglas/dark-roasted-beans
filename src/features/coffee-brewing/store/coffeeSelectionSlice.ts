@@ -19,6 +19,9 @@ export const coffeeSelectionSlice = createSlice({
   name: "coffeeSelection",
   initialState,
   reducers: {
+    /**
+     * Sets the root selection, resetting the inner selection
+     */
     setSelection: (
       state,
       action: PayloadAction<{
@@ -30,6 +33,23 @@ export const coffeeSelectionSlice = createSlice({
       const selection = action.payload.selection;
       state[type] = selection;
     },
+    /**
+     * Sets the subselection without resetting the previous selection
+     */
+    setSubselection: (
+      state,
+      action: PayloadAction<{
+        type: SelectionType;
+        selection: Record<string, string[]>;
+      }>,
+    ) => {
+      const type = action.payload.type;
+      const selection = action.payload.selection;
+      Object.keys(selection).map((key) => (state[type][key] = selection[key]));
+    },
+    /**
+     * Clears the entire selection
+     */
     clearSelection: (state) => {
       state.types = initialState.types;
       state.sizes = initialState.sizes;
@@ -38,7 +58,8 @@ export const coffeeSelectionSlice = createSlice({
   },
 });
 
-export const { setSelection, clearSelection } = coffeeSelectionSlice.actions;
+export const { setSelection, setSubselection, clearSelection } =
+  coffeeSelectionSlice.actions;
 
 /**
  * Selects the current selection from the state

@@ -1,5 +1,6 @@
 export * from "./AnimatedPressable";
 export * from "./Button";
+export * from "./CheckBox";
 export * from "./Icon";
 export * from "./List";
 export * from "./ListItem";

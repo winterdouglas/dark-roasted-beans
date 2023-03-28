@@ -4,8 +4,8 @@ import { List } from "~components/List";
 import { AppStackScreenProps } from "~navigation";
 import {
   selectCurrentCoffeeSelectionByType,
-  selectCurrentCoffeeSelection,
   setSelection,
+  setSubselection,
 } from "~features/coffee-brewing/store";
 import { Config } from "~config";
 import { useAppDispatch } from "~hooks/useAppDispatch";
@@ -38,11 +38,12 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
         renderItem={({ item }) => {
           return (
             <CoffeeSelectionListItem
+              // eslint-disable-next-line dot-notation
               subselections={item["subselections"]}
               selectedValues={selection[item._id]}
               onSelectedValuesChanged={(values) => {
                 dispatch(
-                  setSelection({
+                  setSubselection({
                     type: selectionType,
                     selection: { [item._id]: values },
                   }),

@@ -17,7 +17,7 @@ import {
 import { Text, TextProps } from "~components/Text";
 import { spacing } from "~theme/spacing";
 
-type CheckBoxProps = Omit<PressableOpacityProps, "style"> & {
+export type CheckBoxProps = Omit<PressableOpacityProps, "style"> & {
   /**
    * The value of the field. If true the component will be turned on.
    */
@@ -73,9 +73,20 @@ export const CheckBox = (props: CheckBoxProps) => {
   } = props;
   const { colors } = useTheme();
 
-  const $color = colors.onSecondary || color;
+  const $containerStyles: StyleProp<ViewStyle> = [
+    $containerStyle,
+    $containerStyleOverride,
+    { backgroundColor: colors.tertiary },
+  ];
+  const $foreground = colors.onTertiary || color;
 
-  const $labelStyles = [$label, $labelStyleOverride, { color: $color }];
+  const $labelStyles = [
+    $label,
+    $labelStyleOverride,
+    {
+      color: $foreground,
+    },
+  ];
 
   const Wrapper = useMemo<ComponentType<PressableOpacityProps>>(
     () => (disabled ? View : PressableOpacity),
@@ -93,7 +104,7 @@ export const CheckBox = (props: CheckBoxProps) => {
       accessibilityRole="checkbox"
       accessibilityState={{ checked: value, disabled }}
       {...WrapperProps}
-      style={$containerStyleOverride}
+      style={$containerStyles}
       onPress={handlePress}>
       <View style={$inputWrapper}>
         {labelPosition === "left" && (
@@ -103,7 +114,7 @@ export const CheckBox = (props: CheckBoxProps) => {
         <Icon
           icon={value ? "Checked" : "Unchecked"}
           size={spacing.extraLarge}
-          color={$color}
+          color={$foreground}
           style={$iconStyleOverride}
         />
 
@@ -123,4 +134,9 @@ const $inputWrapper: ViewStyle = {
 
 const $label: TextStyle = {
   flex: 1,
+};
+
+const $containerStyle: ViewStyle = {
+  borderRadius: spacing.extraSmall,
+  padding: spacing.medium,
 };

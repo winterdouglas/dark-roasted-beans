@@ -17,6 +17,8 @@ export const lightTheme: ExtendedTheme = {
     secondary: "#AED7A0",
     onSecondary: "#FFFFFF",
     shadow: "#000000",
+    tertiary: "#9BC88B",
+    onTertiary: "#FFFFFF",
   },
 };
 
@@ -33,5 +35,7 @@ export const darkTheme: ExtendedTheme = {
     secondary: "#AED7A0",
     onSecondary: "#000000",
     shadow: "#FFFFFF",
+    tertiary: "#9BC88B",
+    onTertiary: "#000000",
   },
 };

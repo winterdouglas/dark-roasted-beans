@@ -55,6 +55,7 @@ export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
         getItemProps={(item) => ({
           text: item.name,
           disabled: true,
+          shadowed: false,
         })}
       />
       <Button
