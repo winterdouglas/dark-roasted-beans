@@ -18,6 +18,7 @@ import { getId } from "~features/coffee-brewing/store/withCustomId";
 import { Link } from "~components/Link";
 import { useTheme } from "~hooks/useTheme";
 import { spacing } from "~theme";
+import { Icons } from "~components/Icon";
 
 const MachineId = Config.MACHINE_ID;
 
@@ -64,6 +65,7 @@ export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
           return (
             <CoffeeSelectionListItem
               shadowed={false}
+              leftIcon={item.name as Icons}
               subselections={subselections}
               selectedValues={subselections.map(getId)}
               RightComponent={

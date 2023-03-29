@@ -43,7 +43,7 @@ export const Icon = (props: IconProps) => {
   const {
     icon,
     color,
-    size = 24,
+    // size,
     style: $imageStyleOverride,
     containerStyle: $containerStyleOverride,
     ...WrapperProps
@@ -51,6 +51,9 @@ export const Icon = (props: IconProps) => {
 
   const isPressable = !!WrapperProps.onPress;
   const WrapperComponent = isPressable ? PressableOpacity : View;
+
+  if (!(icon in iconRegistry)) return null;
+
   const IconComponent = iconRegistry[icon];
 
   return (
@@ -61,8 +64,9 @@ export const Icon = (props: IconProps) => {
       <IconComponent
         style={$imageStyleOverride}
         color={color}
-        width={size}
-        height={size}
+        // TODO: Make sure the icon size is consistent! For now relying on the source
+        // width={size}
+        // height={size}
       />
     </WrapperComponent>
   );

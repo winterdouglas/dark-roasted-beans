@@ -200,7 +200,8 @@ const ListItemAction = (props: ListItemActionProps) => {
   if (icon) {
     return (
       <Icon
-        size={24}
+        // TODO: Make sure the icon size is consistent!
+        // size={24}
         icon={icon}
         color={iconColor}
         containerStyle={[$iconContainerStyles, { height: size }]}

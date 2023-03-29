@@ -11,7 +11,8 @@ import {
 } from "~features/coffee-brewing/store";
 import { Config } from "~config";
 import { useAppDispatch } from "~hooks/useAppDispatch";
-import { Button } from "~components";
+import { Icons } from "~components/Icon";
+import { Button } from "~components/Button";
 import { useGetCoffeeMachineItemsByTypeQuery } from "~features/coffee-brewing/hooks/useGetCoffeeMachineItemsByTypeQuery";
 import { CoffeeSelectionListItem } from "~features/coffee-brewing/components/CoffeeSelectionListItem";
 import { useAppSelector } from "~hooks/useAppSelector";
@@ -45,6 +46,7 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
               // eslint-disable-next-line dot-notation
               subselections={item["subselections"]}
               selectedValues={selection[item._id]}
+              leftIcon={item.name as Icons}
               onSelectedValuesChanged={(values) => {
                 dispatch(
                   setSubselection({
