@@ -29,8 +29,12 @@ export const ErrorScreen = ({
   const $safeAreaStyle = useSafeAreaInsetsStyle(["top", "bottom"]);
 
   const $containerStyles: StyleProp<ViewStyle> = [
-    $containerStyle,
     $safeAreaStyle,
+    $containerStyle,
+  ];
+
+  const $wrapperStyles: StyleProp<ViewStyle> = [
+    $wrapperStyle,
     { backgroundColor: colors.background },
   ];
 
@@ -45,26 +49,32 @@ export const ErrorScreen = ({
 
   return (
     <View style={$containerStyles}>
-      <Text style={$heading} text={t("title")} preset="subheading" />
-      <Text text={t("subtitle")} />
+      <View style={$wrapperStyles}>
+        <Text style={$heading} text={t("title")} preset="subheading" />
+        <Text text={t("subtitle")} />
 
-      <ScrollView
-        style={$scrollStyles}
-        contentContainerStyle={$errorSectionContentContainer}>
-        <Text selectable text={`${error}`.trim()} style={$innerTextStyles} />
-        <Text
-          selectable
-          text={`${errorInfo?.componentStack}`.trim()}
-          style={[$errorTrace, $innerTextStyles]}
-        />
-      </ScrollView>
+        <ScrollView
+          style={$scrollStyles}
+          contentContainerStyle={$errorSectionContentContainer}>
+          <Text selectable text={`${error}`.trim()} style={$innerTextStyles} />
+          <Text
+            selectable
+            text={`${errorInfo?.componentStack}`.trim()}
+            style={[$errorTrace, $innerTextStyles]}
+          />
+        </ScrollView>
 
-      <Button style={$resetButton} text={t("reset")} onPress={onReset} />
+        <Button style={$resetButton} text={t("reset")} onPress={onReset} />
+      </View>
     </View>
   );
 };
 
 const $containerStyle: ViewStyle = {
+  flex: 1,
+};
+
+const $wrapperStyle: ViewStyle = {
   flex: 1,
   padding: spacing.medium,
 };
