@@ -85,3 +85,16 @@ The project is configured with vscode recommendations and settings, therefore yo
 The project was created with React Native's Typescript template, therefore it has been fully setup and created from scratch.
 
 Some pieces of code in this project were based on Ignite (https://github.com/infinitered/ignite). More specifically the `post-install` script, the `useSafeAreaInsetsStyle` and a few components (like the `Screen` and `Text`). None of them are direct copies, they were taken as references / ideas for the needs of this project.
+
+## What's next
+
+- [ ] To save the chosen coffee
+- [ ] NFC scanning to connect with a coffee machine
+- [ ] To include the correct font on Android
+- [ ] Beautiful empty states for the lists
+- [ ] Pull-to-refresh on the lists
+- [ ] Move some code that's left in the screens and could be made part of the feature
+- [ ] Detox tests
+- [ ] Unit tests
+- [ ] Storybook
+- [ ] CI/CD
