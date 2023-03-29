@@ -49,9 +49,7 @@ Install packages with yarn. It should be really fast because of the Yarn cache!
 yarn
 ```
 
-Install Pods:
-
-- Skip it, there's no need to install pods manually since there's a post-install script that does that using `npx pod-install`
+Install Pods: **Skip it**, there's no need to install pods manually since there's a `post-install` script that does that for you
 
 Running:
 
