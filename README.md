@@ -6,6 +6,8 @@ A small React Native app that will allow you to brew the tastiest coffee
 
 This app implements a basic coffee brewing flow for a virtual coffee machine, with the coffee machine configuration and options coming from an API. The design is fully based and compliant with a provided Figma layout.
 
+**Screenshots:** Check out the screenshots folder!
+
 ## Features
 
 - Allows picking a coffee type (eg.: cappuccino, ristreto)
