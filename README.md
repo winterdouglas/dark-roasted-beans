@@ -10,7 +10,7 @@ Check out the [screenshots](screenshots/README.md)!
 
 ## Features
 
-- Allows picking a coffee type (eg.: cappuccino, ristreto)
+- Allows picking a coffee type (eg.: cappuccino, ristretto)
 - Allows picking a coffee size (eg.: small, medium, large)
 - Allows picking optional extras (eg.: milk, sugar)
 - It has an overview where you can see the current selection and edit the previously selected options
@@ -42,7 +42,7 @@ Check out the [screenshots](screenshots/README.md)!
 
 Clone the repo
 
-Configure the environment variables (.env) based on the `.env.example` file
+Configure the environment variables `.env` based on the `.env.example` file
 
 Install packages with yarn. It should be really fast because of the Yarn cache!
 
@@ -85,7 +85,7 @@ The project is configured with vscode recommendations and settings, therefore yo
 
 The project was created with React Native's Typescript template, therefore it has been fully setup and created from scratch.
 
-Some pieces of code in this project were based on Ignite (https://github.com/infinitered/ignite). More specifically the `post-install` script, the `useSafeAreaInsetsStyle` and a few components (like the `Screen` and `Text`). None of them are direct copies, they were taken as references / ideas for the needs of this project.
+Some pieces of code in this project were based on Ignite (https://github.com/infinitered/ignite). More specifically the `post-install` script, the `useSafeAreaInsetsStyle` and a few components (like the `Screen` and `Text`). None of them are direct copies, they were taken as references / ideas and modified for the needs of this project.
 
 ## What's next
 
