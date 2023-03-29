@@ -66,7 +66,7 @@ yarn android
 /components // fully reusable components
 /config     // project configuration, exposes settings from the env
 /contexts   // for app wide contexts
-/features   // holds the many features the app could have
+/features   // holds the many features the app could have, each feature can contain its own hooks, components, etc
 /hooks      // app wide hooks
 /lib        // abstracts away libraries (facade)
 /navigation // app navigators (react navigation)
