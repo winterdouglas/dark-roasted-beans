@@ -8,6 +8,7 @@ import {
   type ViewStyle,
   StatusBar,
   TextStyle,
+  StatusBarStyle,
 } from "react-native";
 import { spacing } from "~theme";
 import {
@@ -112,7 +113,7 @@ export const Screen = ({
   ...props
 }: ScreenProps) => {
   useHeader({ title, leftIcon, onLeftIconPress, iconProps, titleProps });
-  const { colors } = useTheme();
+  const { colors, dark } = useTheme();
 
   const {
     backgroundColor,
@@ -123,9 +124,18 @@ export const Screen = ({
 
   const $containerInsets = useSafeAreaInsetsStyle(safeAreaEdges);
 
+  const $statusBarStyle: StatusBarStyle = Platform.select({
+    android: dark ? "light-content" : "dark-content",
+    // We only set the status bar color on Android, as on iOS it's set by the navigator
+    ios: undefined,
+  });
+
   return (
     <View style={[$containerStyle, { backgroundColor }, $containerInsets]}>
-      <StatusBar backgroundColor={backgroundColor || colors.background} />
+      <StatusBar
+        backgroundColor={backgroundColor || colors.background}
+        barStyle={$statusBarStyle}
+      />
 
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}
