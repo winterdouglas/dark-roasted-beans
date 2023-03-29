@@ -18,6 +18,7 @@ This app implements a basic coffee brewing flow for a virtual coffee machine, wi
 - Error handling and crash reporting with a boundary
 - Internationalization
 - Dark and light modes: Follows the system theme
+- Ability to refetch data on reconnect
 
 ## Stack
 
@@ -90,6 +91,7 @@ Some pieces of code in this project were based on Ignite (https://github.com/inf
 
 - [ ] To save the chosen coffee
 - [ ] NFC scanning to connect with a coffee machine
+- [ ] Fix some SVG rendering issues on Android
 - [ ] To include the correct font on Android
 - [ ] Beautiful empty states for the lists
 - [ ] Pull-to-refresh on the lists

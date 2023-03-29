@@ -7,12 +7,14 @@ import {
 export const useGetCoffeeMachineItemsByTypeQuery = (
   machineId: string,
   selectionType: "types" | "sizes" | "extras",
+  refetchOnReconnect = true,
 ) => {
   // This is the selected type in the store,
   // Used to filter related options
   const { type } = useAppSelector(selectCurrentCoffeeSelection);
 
   return useGetCoffeeMachineByIdQuery(machineId, {
+    refetchOnReconnect: refetchOnReconnect,
     selectFromResult: ({ data }) => {
       if (!data) return { items: [] };
 

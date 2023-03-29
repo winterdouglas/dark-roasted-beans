@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/dist/query/react";
 import {
   coffeeMachineApiSlice,
   coffeeSelectionSliceReducer,
 } from "~features/coffee-brewing/store";
+import { RNListeners } from "./setupListeners";
 
 export const store = configureStore({
   reducer: {
@@ -17,3 +19,5 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+setupListeners(store.dispatch, RNListeners);
