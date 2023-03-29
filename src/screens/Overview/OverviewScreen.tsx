@@ -1,13 +1,13 @@
 import React, { useMemo } from "react";
 import { ViewStyle } from "react-native";
 import { useTranslation } from "react-i18next";
-import { Config } from "~config";
 import { List } from "~components/List";
 import { Screen } from "~components/Screen";
 import {
   clearSelection,
   createOverviewSelector,
   selectCurrentCoffeeSelection,
+  selectMachineId,
 } from "~features/coffee-brewing/store";
 import { useAppSelector } from "~hooks/useAppSelector";
 import { AppStackScreenProps } from "~navigation";
@@ -19,8 +19,6 @@ import { Link } from "~components/Link";
 import { useTheme } from "~hooks/useTheme";
 import { spacing } from "~theme";
 import { Icons } from "~components/Icon";
-
-const MachineId = Config.MACHINE_ID;
 
 type OverviewScreenProps = AppStackScreenProps<"Overview"> & {};
 
@@ -40,14 +38,15 @@ export const OverviewScreen = ({ navigation }: OverviewScreenProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation("overview");
 
+  const machineId = useAppSelector(selectMachineId);
   const currentSelection = useAppSelector(selectCurrentCoffeeSelection);
   const overviewSelector = useMemo(
     () =>
       createOverviewSelector({
-        id: MachineId,
+        id: machineId,
         ...currentSelection,
       }),
-    [currentSelection],
+    [currentSelection, machineId],
   );
   const items = useAppSelector(overviewSelector);
 

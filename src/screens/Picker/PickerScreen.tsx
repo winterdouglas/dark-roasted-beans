@@ -6,10 +6,10 @@ import { List } from "~components/List";
 import { AppStackScreenProps } from "~navigation";
 import {
   selectCurrentCoffeeSelectionByType,
+  selectMachineId,
   setSelection,
   setSubselection,
 } from "~features/coffee-brewing/store";
-import { Config } from "~config";
 import { useAppDispatch } from "~hooks/useAppDispatch";
 import { Icons } from "~components/Icon";
 import { Button } from "~components/Button";
@@ -20,8 +20,6 @@ import { spacing } from "~theme";
 
 type PickerScreenProps = AppStackScreenProps<"Picker"> & {};
 
-const machineId = Config.MACHINE_ID;
-
 export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
   const { selectionType } = route.params;
   const { t } = useTranslation(selectionType);
@@ -29,6 +27,7 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
   const selection = useAppSelector((state) =>
     selectCurrentCoffeeSelectionByType(state, selectionType),
   );
+  const machineId = useAppSelector(selectMachineId);
   const { items } = useGetCoffeeMachineItemsByTypeQuery(
     machineId,
     selectionType,

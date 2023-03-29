@@ -3,13 +3,21 @@ import {
   createSlice,
   type PayloadAction,
 } from "@reduxjs/toolkit";
+import { Config } from "~config";
 import { RootState } from "~store";
 
 type SelectionType = "types" | "sizes" | "extras";
 
-type CoffeeSelectionState = Record<SelectionType, Record<string, string[]>>;
+type CoffeeSelectionState = Record<SelectionType, Record<string, string[]>> & {
+  /**
+   * The machine id
+   * Could be set on NFC
+   */
+  machineId: string;
+};
 
 const initialState: CoffeeSelectionState = {
+  machineId: Config.MACHINE_ID,
   types: {},
   sizes: {},
   extras: {},
@@ -88,5 +96,8 @@ export const selectCurrentCoffeeSelectionByType = createSelector(
   (_state: RootState, type: SelectionType) => type,
   (selection, type) => selection[type],
 );
+
+export const selectMachineId = (state: RootState) =>
+  state.coffeeSelection.machineId;
 
 export const { reducer: coffeeSelectionSliceReducer } = coffeeSelectionSlice;
