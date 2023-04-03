@@ -64,6 +64,14 @@ export const {
 } = coffeeSelectionSlice.actions;
 
 /**
+ * Selects the selected machine id
+ * @param state The state
+ * @returns The machine id
+ */
+export const selectMachineId = (state: RootState) =>
+  state.coffeeSelection.machineId;
+
+/**
  * Selects the current selection from the state
  * @param state The state
  * @returns The current selection
@@ -90,13 +98,5 @@ export const selectCurrentCoffeeSelectionByType = createSelector(
   (_state: RootState, type: SelectionType) => type,
   (selection, type) => selection[type],
 );
-
-/**
- * Selects the selected machine id
- * @param state The state
- * @returns The machine id
- */
-export const selectMachineId = (state: RootState) =>
-  state.coffeeSelection.machineId;
 
 export const { reducer: coffeeSelectionSliceReducer } = coffeeSelectionSlice;

@@ -1,10 +1,13 @@
-import { AppStore, setupStore } from "~store/setupStore";
+import { AppStore, RootState, setupStore } from "~store/setupStore";
 import {
   SelectionPayload,
   chooseMachineId,
   makeSelection,
   makeSubselection,
   clearSelection,
+  selectCurrentCoffeeSelection,
+  selectCurrentCoffeeSelectionByType,
+  selectMachineId,
 } from "./coffeeSelectionSlice";
 
 describe("coffeeSelectionSlice", () => {
@@ -102,6 +105,48 @@ describe("coffeeSelectionSlice", () => {
       expect(selectionSlice().types).toStrictEqual({});
       expect(selectionSlice().sizes).toStrictEqual({});
       expect(selectionSlice().extras).toStrictEqual({});
+    });
+  });
+
+  describe("selectors", () => {
+    const createFakeState = (): RootState => ({
+      coffeeSelection: {
+        machineId: "any",
+        types: { t: ["t1"] },
+        sizes: { s: ["s1"] },
+        extras: { e: ["e1"] },
+      },
+      coffeeMachineApi: {} as any,
+    });
+
+    describe("selectMachineId", () => {
+      const state = createFakeState();
+
+      const result = selectMachineId(state);
+
+      expect(result).toBe("any");
+    });
+
+    describe("selectCurrentCoffeeSelection", () => {
+      it("should return the current selection", () => {
+        const state = createFakeState();
+
+        const result = selectCurrentCoffeeSelection(state);
+
+        expect(result.type).toBe("t");
+        expect(result.size).toBe("s");
+        expect(result.extras).toMatchObject({ e: ["e1"] });
+      });
+    });
+
+    describe("selectCurrentCoffeeSelectionByType", () => {
+      it("should return the current selection by type", () => {
+        const state = createFakeState();
+
+        const result = selectCurrentCoffeeSelectionByType(state, "types");
+
+        expect(result).toMatchObject({ t: ["t1"] });
+      });
     });
   });
 });
