@@ -4,7 +4,7 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 
 let initialized = false;
 
-export const RNListeners = (
+export const reactNativeListeners = (
   dispatch: ThunkDispatch<any, any, any>,
   { onFocus, onFocusLost, onOnline, onOffline },
 ) => {

@@ -8,12 +8,20 @@ import { RootState } from "~store";
 
 type SelectionType = "types" | "sizes" | "extras";
 
-type CoffeeSelectionState = Record<SelectionType, Record<string, string[]>> & {
+export type CoffeeSelectionState = Record<
+  SelectionType,
+  Record<string, string[]>
+> & {
   /**
    * The machine id
    * Could be set on NFC
    */
   machineId: string;
+};
+
+export type SelectionPayload = {
+  type: SelectionType;
+  selection: Record<string, string[]>;
 };
 
 const initialState: CoffeeSelectionState = {
@@ -27,37 +35,19 @@ export const coffeeSelectionSlice = createSlice({
   name: "coffeeSelection",
   initialState,
   reducers: {
-    /**
-     * Sets the root selection, resetting the inner selection
-     */
-    setSelection: (
-      state,
-      action: PayloadAction<{
-        type: SelectionType;
-        selection: Record<string, string[]>;
-      }>,
-    ) => {
+    chooseMachineId: (state, action: PayloadAction<string>) => {
+      state.machineId = action.payload;
+    },
+    makeSelection: (state, action: PayloadAction<SelectionPayload>) => {
       const type = action.payload.type;
       const selection = action.payload.selection;
       state[type] = selection;
     },
-    /**
-     * Sets the subselection without resetting the previous selection
-     */
-    setSubselection: (
-      state,
-      action: PayloadAction<{
-        type: SelectionType;
-        selection: Record<string, string[]>;
-      }>,
-    ) => {
+    makeSubselection: (state, action: PayloadAction<SelectionPayload>) => {
       const type = action.payload.type;
       const selection = action.payload.selection;
       Object.keys(selection).map((key) => (state[type][key] = selection[key]));
     },
-    /**
-     * Clears the entire selection
-     */
     clearSelection: (state) => {
       state.types = initialState.types;
       state.sizes = initialState.sizes;
@@ -66,8 +56,12 @@ export const coffeeSelectionSlice = createSlice({
   },
 });
 
-export const { setSelection, setSubselection, clearSelection } =
-  coffeeSelectionSlice.actions;
+export const {
+  chooseMachineId,
+  makeSelection,
+  makeSubselection,
+  clearSelection,
+} = coffeeSelectionSlice.actions;
 
 /**
  * Selects the current selection from the state
@@ -97,6 +91,11 @@ export const selectCurrentCoffeeSelectionByType = createSelector(
   (selection, type) => selection[type],
 );
 
+/**
+ * Selects the selected machine id
+ * @param state The state
+ * @returns The machine id
+ */
 export const selectMachineId = (state: RootState) =>
   state.coffeeSelection.machineId;
 

@@ -89,14 +89,14 @@ Some pieces of code in this project were based on Ignite (https://github.com/inf
 
 ## What's next
 
-- [ ] To save the chosen coffee
+- [ ] To save the chosen coffee (eg.: local storage)
 - [ ] NFC scanning to connect with a coffee machine
 - [ ] Fix some SVG rendering issues on Android
 - [ ] To include the correct font on Android
 - [ ] Beautiful empty states for the lists
 - [ ] Pull-to-refresh on the lists
-- [ ] Move some code that's left in the screens and could be made part of the feature
-- [ ] Detox tests
+- [ ] Move some code that's left in the screens and could potentially be made part of the feature
 - [ ] Unit tests
+- [ ] Detox tests
 - [ ] Storybook
 - [ ] CI/CD

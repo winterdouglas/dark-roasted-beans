@@ -7,8 +7,8 @@ import { AppStackScreenProps } from "~navigation";
 import {
   selectCurrentCoffeeSelectionByType,
   selectMachineId,
-  setSelection,
-  setSubselection,
+  makeSelection,
+  makeSubselection,
 } from "~features/coffee-brewing/store";
 import { useAppDispatch } from "~hooks/useAppDispatch";
 import { Icons } from "~components/Icon";
@@ -48,7 +48,7 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
               leftIcon={item.name as Icons}
               onSelectedValuesChanged={(values) => {
                 dispatch(
-                  setSubselection({
+                  makeSubselection({
                     type: selectionType,
                     selection: { [item._id]: values },
                   }),
@@ -58,7 +58,7 @@ export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
               disabled={selectionType === "extras"}
               onPress={() => {
                 dispatch(
-                  setSelection({
+                  makeSelection({
                     type: selectionType,
                     selection: { [item._id]: [] },
                   }),
