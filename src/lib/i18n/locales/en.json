@@ -1,0 +1,40 @@
+{
+  "common": {
+    "loading": "Loading..."
+  },
+  "error": {
+    "title": "Something went wrong!",
+    "subtitle": "Oops... It looks like something unexpected happened.",
+    "unknown": "Unknown error",
+    "reset": "Reset the app"
+  },
+  "scan": {
+    "title": "Dark Roasted Beans",
+    "subtitle": "Tap the machine to start",
+    "instructions": "How does this work"
+  },
+  "types": {
+    "title": "Brew with Lex",
+    "subtitle": "Select your style"
+  },
+  "sizes": {
+    "title": "Brew with Lex",
+    "subtitle": "Select your size"
+  },
+  "extras": {
+    "title": "Brew with Lex",
+    "subtitle": "Select your extra's",
+    "continue": "Continue"
+  },
+  "overview": {
+    "title": "Brew with Lex",
+    "subtitle": "Overview",
+    "edit": "Edit",
+    "brew": "Brew your coffee"
+  },
+  "result": {
+    "title": "Thanks!",
+    "subtitle": "Your coffee is being prepared",
+    "restart": "Start over"
+  }
+}
