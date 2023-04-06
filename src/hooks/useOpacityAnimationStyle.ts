@@ -27,8 +27,7 @@ export const useOpacityAnimationStyle = (
 
   useEffect(() => {
     return () => cancelAnimation(opacity);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [opacity]);
 
   return [animatedStyle, animate];
 };

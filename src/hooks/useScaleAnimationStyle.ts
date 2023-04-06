@@ -27,8 +27,7 @@ export const useScaleAnimationStyle = (
 
   useEffect(() => {
     return () => cancelAnimation(scale);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [scale]);
 
   return [animatedStyle, animate];
 };
