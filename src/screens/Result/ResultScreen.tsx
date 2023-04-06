@@ -1,4 +1,3 @@
-import React from "react";
 import { ViewStyle } from "react-native";
 import { useTranslation } from "react-i18next";
 import Lottie from "lottie-react-native";
@@ -7,7 +6,7 @@ import { AppStackScreenProps } from "~navigation/AppNavigator";
 import { Button } from "~components/Button";
 import { useAndroidBackButton } from "~hooks/useAndroidBackButton";
 
-type ResultScreenProps = AppStackScreenProps<"Result"> & {};
+type ResultScreenProps = AppStackScreenProps<"Result">;
 
 export const ResultScreen = ({ navigation }: ResultScreenProps) => {
   const { t } = useTranslation("result");

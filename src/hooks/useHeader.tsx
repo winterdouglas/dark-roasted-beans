@@ -1,4 +1,4 @@
-import React, { DependencyList, useLayoutEffect } from "react";
+import { DependencyList, useLayoutEffect } from "react";
 import { TextStyle } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationOptions } from "@react-navigation/native-stack";

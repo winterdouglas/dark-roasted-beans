@@ -1,4 +1,3 @@
-import React from "react";
 import { ListItem, ListItemProps } from "~components/ListItem";
 import { CoffeeExtraOption } from "~features/coffee-brewing/store/coffee-machine";
 import { CoffeeSubselectionList } from "~features/coffee-brewing/components/CoffeeSubselectionList";

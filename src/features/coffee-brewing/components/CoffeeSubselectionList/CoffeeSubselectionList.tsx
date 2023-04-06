@@ -1,4 +1,3 @@
-import React from "react";
 import { StyleProp, View, ViewStyle } from "react-native";
 import { Separator } from "~components";
 import { CheckBox } from "~components/CheckBox";

@@ -1,4 +1,4 @@
-import React, { ComponentType, useMemo } from "react";
+import { ComponentType, useMemo } from "react";
 import {
   ColorValue,
   GestureResponderEvent,

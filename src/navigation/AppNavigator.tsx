@@ -1,4 +1,4 @@
-import React, { ComponentProps } from "react";
+import { ComponentProps } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createNativeStackNavigator,
@@ -63,9 +63,3 @@ export const AppNavigator = (props: AppNavigatorProps) => {
     </NavigationContainer>
   );
 };
-
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList extends AppStackParamList {}
-  }
-}

@@ -1,4 +1,4 @@
-import React, { type ErrorInfo } from "react";
+import { type ErrorInfo } from "react";
 import {
   ScrollView,
   type TextStyle,

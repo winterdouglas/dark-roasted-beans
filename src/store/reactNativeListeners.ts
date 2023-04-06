@@ -5,7 +5,7 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 let initialized = false;
 
 export const reactNativeListeners = (
-  dispatch: ThunkDispatch<any, any, any>,
+  dispatch: ThunkDispatch<unknown, unknown, never>,
   { onFocus, onFocusLost, onOnline, onOffline },
 ) => {
   let unsubscribeOnChange: NativeEventSubscription | undefined;

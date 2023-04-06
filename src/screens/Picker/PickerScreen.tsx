@@ -1,4 +1,3 @@
-import React from "react";
 import { ViewStyle } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Screen } from "~components/Screen";
@@ -18,7 +17,7 @@ import { CoffeeSelectionListItem } from "~features/coffee-brewing/components/Cof
 import { useAppSelector } from "~hooks/useAppSelector";
 import { spacing } from "~theme";
 
-type PickerScreenProps = AppStackScreenProps<"Picker"> & {};
+type PickerScreenProps = AppStackScreenProps<"Picker">;
 
 export const PickerScreen = ({ route, navigation }: PickerScreenProps) => {
   const { selectionType } = route.params;

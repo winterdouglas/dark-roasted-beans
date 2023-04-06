@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { ViewStyle } from "react-native";
 import { useTranslation } from "react-i18next";
 import { List } from "~components/List";
@@ -20,7 +20,7 @@ import { Button } from "~components/Button";
 import { Link } from "~components/Link";
 import { Icons } from "~components/Icon";
 
-type OverviewScreenProps = AppStackScreenProps<"Overview"> & {};
+type OverviewScreenProps = AppStackScreenProps<"Overview">;
 
 /**
  * Determines the navigation target by the item index, considering the order of types / sizes / extras
