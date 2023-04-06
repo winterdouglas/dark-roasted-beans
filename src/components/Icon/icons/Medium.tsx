@@ -1,4 +1,3 @@
-import * as React from "react";
 import Svg, { SvgProps, G, Path, Defs, ClipPath, Rect } from "react-native-svg";
 
 export const Medium = (props: SvgProps) => (

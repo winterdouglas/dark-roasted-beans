@@ -1,4 +1,3 @@
-import React from "react";
 import { StyleProp, View, ViewStyle } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Text } from "~components/Text";

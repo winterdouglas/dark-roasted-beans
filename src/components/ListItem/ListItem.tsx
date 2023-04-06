@@ -1,4 +1,4 @@
-import React, { ComponentType, ReactElement } from "react";
+import { ComponentType, ReactElement } from "react";
 import {
   ColorValue,
   PressableProps,

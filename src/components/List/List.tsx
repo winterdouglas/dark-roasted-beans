@@ -1,4 +1,4 @@
-import React, { ComponentType } from "react";
+import { ComponentType } from "react";
 import { FlatList, FlatListProps, StyleProp, ViewStyle } from "react-native";
 import { spacing } from "~theme";
 import { ListItem, type ListItemProps } from "~components/ListItem";
@@ -23,7 +23,7 @@ export type ListProps<TItem> =
   | DefaultListProps<TItem>
   | ContinuousListProps<TItem>;
 
-export const List = <TItem extends unknown>({
+export const List = <TItem,>({
   preset = "default",
   data,
   renderItem,
@@ -91,11 +91,11 @@ const $listItemProps = {
 };
 
 const $listProps = {
-  default: { ItemSeparatorComponent: Separator } as FlatListProps<any>,
+  default: { ItemSeparatorComponent: Separator } as FlatListProps<never>,
 
   continuous: {
     ItemSeparatorComponent: ListLineSeparator as ComponentType,
-  } as FlatListProps<any>,
+  } as FlatListProps<never>,
 };
 
 const $listContainerPresets = {

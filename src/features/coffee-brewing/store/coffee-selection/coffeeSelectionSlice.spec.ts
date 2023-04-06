@@ -116,7 +116,7 @@ describe("coffeeSelectionSlice", () => {
         sizes: { s: ["s1"] },
         extras: { e: ["e1"] },
       },
-      coffeeMachineApi: {} as any,
+      coffeeMachineApi: {} as never,
     });
 
     describe("selectMachineId", () => {

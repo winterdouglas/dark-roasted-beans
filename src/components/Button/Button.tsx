@@ -1,4 +1,3 @@
-import React from "react";
 import { ListItem, ListItemProps } from "~components/ListItem";
 
 export type ButtonProps = ListItemProps;

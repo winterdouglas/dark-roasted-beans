@@ -1,4 +1,3 @@
-import React from "react";
 import { type PressableProps } from "react-native";
 import { useOpacityAnimationStyle } from "~hooks/useOpacityAnimationStyle";
 import { AnimatedPressable } from "~components/AnimatedPressable";

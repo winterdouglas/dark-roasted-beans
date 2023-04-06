@@ -1,4 +1,3 @@
-import React from "react";
 import { GestureResponderEvent, StyleProp, ViewStyle } from "react-native";
 import { PressableScale } from "~components/PressableScale";
 import { Text, TextProps } from "~components/Text";

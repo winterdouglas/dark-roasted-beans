@@ -11,7 +11,10 @@ export enum ErrorType {
   HANDLED = "Handled",
 }
 
-export const reportCrash = (error: any, type: ErrorType = ErrorType.FATAL) => {
+export const reportCrash = (
+  error: Error,
+  type: ErrorType = ErrorType.FATAL,
+) => {
   if (__DEV__) {
     const message = error.message || i18n.t("error:unknown");
     console.error(error);

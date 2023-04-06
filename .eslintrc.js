@@ -1,4 +1,10 @@
 module.exports = {
   root: true,
-  extends: ["@react-native-community", "prettier"],
+  extends: [
+    "eslint:recommended",
+    "@react-native",
+    "plugin:react/jsx-runtime",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+  ],
 };
